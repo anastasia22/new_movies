@@ -1,0 +1,27 @@
+{
+  "name": "new_movies",
+  "version": "1.0.0",
+  "description": "Movies web site based on MEAN-stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anastasia22/new_movies.git"
+  },
+  "author": "Anastasiia Buniak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anastasia22/new_movies/issues"
+  },
+  "homepage": "https://github.com/anastasia22/new_movies",
+  "dependencies": {
+    "express": "^4.12.3"
+  },
+  "devDependencies": {
+    "body-parser": "^1.12.3",
+    "grunt": "^0.4.5",
+    "path": "^0.11.14"
+  }
+}
