@@ -1,15 +1,21 @@
 <DOCTYPE html>
-<html>
+<html ng-app="springMovies">
   <head>
     <title>Spring movies</title>
     <link rel="stylesheet" href="styles/mainStyle.css"></link>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
-    <script src="app.js"></script>
+    <script type="text/javascript" src="scripts/vendors/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/vendors/angular-route.min.js"></script>
   </head>
-  <body ng-app="springMovies">
-    <header></header>
+  <body>
+    <header-info></header-info>
     <search></search>
-
-    <footer></footer>
+    <left-menu></left-menu>
+    <ng-view></ng-view>
+    <footer-info></footer-info>
   </body>
+  <script type="text/javascript" src="scripts/app.js"></script>
+  <script type="text/javascript" src="scripts/directives/headerDirective.js"></script>
+  <script type="text/javascript" src="scripts/directives/searchDirective.js"></script>
+  <script type="text/javascript" src="scripts/directives/menuDirective.js"></script>
+  <script type="text/javascript" src="scripts/directives/footerDirective.js"></script>
 </html>
