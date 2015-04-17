@@ -5,21 +5,24 @@ var springMovies = angular.module('springMovies',[]);
 springMovies.directive('search', function() {
 	return {
 		restrict: 'E',
-		templateUrl: '../views/search.html'
+		templateUrl: 'views/search.html',
+		controller: 'searchCont'
 	}
 });
 
 springMovies.directive('header', function() {
 	return {
 		restrict: 'E',
-		templateUrl: '../views/header.html'
+		templateUrl: 'views/header.html',
+		controller: 'headerCont'
 	}
 });
 
 springMovies.directive('footer', function() {
 	return {
 		restrict: 'E',
-		templateUrl: '../views/footer.html'
+		templateUrl: 'views/footer.html',
+		controller: 'footerCont'
 	}
 });
 
