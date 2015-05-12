@@ -9,12 +9,13 @@ var path = {};
 path.scripts = 'app/scripts/**';
 path.sass = 'app/styles/sass/**';
 path.views = 'app/views/*';
+path.index = 'index.html'
 
 grunt.initConfig({
 	watch: {
 		scripts: {
-			files: [path.scripts, path.views],
-			tasks: ['world'],
+			files: [path.scripts, path.views, path.index],
+			tasks: ['jshint'],
 			options: {
 				livereload: {
 					port: 9876
@@ -53,20 +54,17 @@ grunt.initConfig({
 		},
 		dist: {
 			files: {
-			'main.css': 'main.scss'
+			'app/styles/mainStyle.css': 'app/styles/sass/main.scss'
 			}
 		}
 	},
 	jshint: {
-		files: [path.scripts]
+		all: [path.scripts]
 	}
 
 
 });
 
-grunt.registerTask('world', 'world task description', function(){
-  console.log('world');
-});
-
-
 grunt.registerTask('default', ['express', 'sass', 'watch']);
+
+
