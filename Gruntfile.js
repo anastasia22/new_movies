@@ -1,8 +1,8 @@
 var grunt = require('grunt');
 grunt.loadNpmTasks('grunt-express-server');
 grunt.loadNpmTasks('grunt-contrib-watch');
-grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadNpmTasks('grunt-sass');
+grunt.loadNpmTasks('grunt-autoprefixer');
 
 
 var path = {};
@@ -15,7 +15,6 @@ grunt.initConfig({
 	watch: {
 		scripts: {
 			files: [path.scripts, path.views, path.index],
-			tasks: ['jshint'],
 			options: {
 				livereload: {
 					port: 9876
@@ -24,7 +23,7 @@ grunt.initConfig({
 		},
 		css: {
 			files: [path.sass],
-			tasks: ['sass'],
+			tasks: ['sass', 'autoprefixer'],
 			options: {
 				livereload: {
 					port: 9876
@@ -41,12 +40,6 @@ grunt.initConfig({
 				script: 'server.js'
 			}
 		}
-	// prod: {
-	//   options: {
-	//     script: 'path/to/prod/server.js',
-	//     node_env: 'production'
-	//   }
-	// },
 	}, 
 	sass: {
 		options: {
@@ -54,17 +47,21 @@ grunt.initConfig({
 		},
 		dist: {
 			files: {
-			'app/styles/mainStyle.css': 'app/styles/sass/main.scss'
+			'app/mainStyle.css': 'app/styles/sass/main.scss'
 			}
 		}
 	},
-	jshint: {
-		all: [path.scripts]
+	autoprefixer: {
+	    options: {
+	      browsers: ['last 2 versions', 'ie 8', 'ie 9'],
+	      src: 'app/mainStyle.css',
+	      dest: 'app/mainStyle.css'
+	    }
 	}
-
-
 });
 
-grunt.registerTask('default', ['express', 'sass', 'watch']);
+grunt.registerTask('build', ['express', 'sass', 'autoprefixer']);
+
+grunt.registerTask('default', ['build', 'watch']);
 
 

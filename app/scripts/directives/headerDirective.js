@@ -5,6 +5,7 @@ angular.module('springMovies').directive('headerInfo', function() {
 		restrict: 'E',
 		templateUrl: '../../views/header.html',
 		controller: function() {
+			
 		}
 	}
 });

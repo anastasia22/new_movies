@@ -1,0 +1,16 @@
+{
+	"version": 3,
+	"file": "mainStyle.css",
+	"sources": [
+		"styles/sass/main.scss",
+		"styles/sass/modules/_mixins.scss",
+		"styles/sass/modules/_variables.scss",
+		"styles/sass/partials/_footer.scss",
+		"styles/sass/partials/_header.scss",
+		"styles/sass/partials/_menu.scss",
+		"styles/sass/partials/_search.scss"
+	],
+	"sourcesContent": [],
+	"mappings": "AEAA,UAAU;AAGqB,WAAW;AACb,WAAW;AAExC,cAAc;ACNd,IAAI;ACAJ,IAAI;ACAJ,IAAI;ACAJ,IAAI;ANOJ,CAAC,CAAC;EACD,UAAU,EAAC,UAAW,GADpB;;AAIH,IAAI,CAAC;EACJ,UAAU,EAAE,gDAAe,GADtB;;AAIN,eAAe,CAAC;EACd,gBAAgB,EAAE,OAAQ;EAC1B,aAAa,EEVA,GAAG;EFWhB,MAAM,EAAE,MAAO,GAHA",
+	"names": []
+}

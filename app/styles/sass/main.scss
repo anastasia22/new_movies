@@ -1,6 +1,22 @@
+@import "modules/_mixins";
+@import "modules/_variables";
+@import "partials/_footer";
+@import "partials/_header";
+@import "partials/_menu";
+@import "partials/_search";
+
+* {
+	box-sizing:border-box;
+}
+
+body {
+	background: linear-gradient(90deg, $aquamarine 10%, $royalBlue 90%);
+}
 
 .main-container {
-	background: gray;
-	width:1200px;
-	margin:0 auto;
+  background-color: #ECE9E6;
+  border-radius: $borderRadius;
+  margin: 0 auto;
 }
+
+

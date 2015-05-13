@@ -1,0 +1,20 @@
+/*colors*/
+/*#43cea2*/
+/*#185a9d*/
+/*functional*/
+/**/
+/**/
+/**/
+/**/
+* {
+  box-sizing: border-box; }
+
+body {
+  background: linear-gradient(90deg, #43cea2 10%, #185a9d 90%); }
+
+.main-container {
+  background-color: #ECE9E6;
+  border-radius: 8px;
+  margin: 0 auto; }
+
+/*# sourceMappingURL=mainStyle.css.map */
