@@ -1,20 +1,20 @@
 var grunt = require('grunt');
 grunt.loadNpmTasks('grunt-express-server');
 grunt.loadNpmTasks('grunt-contrib-watch');
-grunt.loadNpmTasks('grunt-sass');
+grunt.loadNpmTasks('grunt-contrib-sass');
 grunt.loadNpmTasks('grunt-autoprefixer');
+grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 
 var path = {};
 path.scripts = 'app/scripts/**';
 path.sass = 'app/styles/sass/**';
 path.views = 'app/views/*';
-path.index = 'index.html'
 
 grunt.initConfig({
 	watch: {
 		scripts: {
-			files: [path.scripts, path.views, path.index],
+			files: [path.scripts, path.views],
 			options: {
 				livereload: {
 					port: 9876
@@ -23,7 +23,7 @@ grunt.initConfig({
 		},
 		css: {
 			files: [path.sass],
-			tasks: ['sass', 'autoprefixer'],
+			tasks: ['sass:dev', 'autoprefixer'],
 			options: {
 				livereload: {
 					port: 9876
@@ -42,26 +42,53 @@ grunt.initConfig({
 		}
 	}, 
 	sass: {
-		options: {
-			sourceMap: true
-		},
-		dist: {
+		dev: {
+			options: {
+				sourcemap: 'auto',
+				style: 'expanded',
+				lineNumbers: true
+			},
 			files: {
-			'app/mainStyle.css': 'app/styles/sass/main.scss'
+				'app/mainStyle.css': 'app/styles/sass/main.scss'
+			}
+		},
+		prod: {
+			options: {
+				sourcemap: 'none',
+				style: 'compressed'
+			},
+			files: {
+				'app/mainStyle.css': 'app/styles/sass/main.scss'
 			}
 		}
 	},
 	autoprefixer: {
-	    options: {
-	      browsers: ['last 2 versions', 'ie 8', 'ie 9'],
-	      src: 'app/mainStyle.css',
-	      dest: 'app/mainStyle.css'
+	    
+  		single_file: {
+  			options: {
+	      browsers: ['last 2 versions', 'ie 8', 'ie 9']
+  		},
+			src:'app/mainStyle.css',
+			dest: 'app/style.css'
+		}
+
+	}, 
+	cssmin: {
+		options: {
+	        keepSpecialComments: 0
+	    },
+	    site: {
+				'app/mainStyle.css': 'app/styles/sass/main.scss'
+
 	    }
 	}
 });
 
-grunt.registerTask('build', ['express', 'sass', 'autoprefixer']);
 
-grunt.registerTask('default', ['build', 'watch']);
+grunt.registerTask('dev', ['express', 'sass:dev', 'autoprefixer']);
+grunt.registerTask('prod', ['sass:prod', 'cssmin']);
+
+
+grunt.registerTask('default', ['dev', 'watch']);
 
 
