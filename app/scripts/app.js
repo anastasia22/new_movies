@@ -1,7 +1,9 @@
 'use strict';
 
+
 angular.module('springMovies', [
-	'ngRoute'
+	'ngRoute',
+  'springMovies.movie'
 ])
 
 
@@ -15,9 +17,5 @@ angular.module('springMovies', [
     templateUrl: '../views/movies.html'/*,*/
     //controller: 'Controller'
   })
-  .when('/movie/:id', {
-    templateUrl: '../views/movie.html'/*,*/
-    //controller: 'Controller'
-  })
-    
+   
  }); 
