@@ -8,8 +8,12 @@ var port = 5555;
 
 app.use(express.static(path.join(__dirname, 'app')));
 
+app.set('view engine', 'html');
+app.set('views', './')
+app.engine('html', require('ejs').renderFile);
+
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('dist/index');
 });
 
 app.listen(port);

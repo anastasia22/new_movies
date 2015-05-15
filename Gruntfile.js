@@ -3,12 +3,13 @@ grunt.loadNpmTasks('grunt-express-server');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-sass');
 grunt.loadNpmTasks('grunt-autoprefixer');
-grunt.loadNpmTasks('grunt-contrib-cssmin');
+// grunt.loadNpmTasks('grunt-contrib-cssmin');
+grunt.loadNpmTasks('grunt-contrib-concat');
 
 
 var path = {};
 path.scripts = 'app/scripts/**';
-path.sass = 'app/styles/sass/**';
+path.sass = 'app/styles/**';
 path.views = 'app/views/*';
 
 grunt.initConfig({
@@ -21,7 +22,7 @@ grunt.initConfig({
 				}
 			}
 		},
-		css: {
+		styles: {
 			files: [path.sass],
 			tasks: ['sass:dev', 'autoprefixer'],
 			options: {
@@ -49,7 +50,7 @@ grunt.initConfig({
 				lineNumbers: true
 			},
 			files: {
-				'app/mainStyle.css': 'app/styles/sass/main.scss'
+				'dist/style.css': 'app/styles/main.scss'
 			}
 		},
 		prod: {
@@ -58,7 +59,7 @@ grunt.initConfig({
 				style: 'compressed'
 			},
 			files: {
-				'app/mainStyle.css': 'app/styles/sass/main.scss'
+				'dist/style.css': 'app/styles/main.scss'
 			}
 		}
 	},
@@ -68,25 +69,31 @@ grunt.initConfig({
   			options: {
 	      browsers: ['last 2 versions', 'ie 8', 'ie 9']
   		},
-			src:'app/mainStyle.css',
-			dest: 'app/style.css'
+			src:'app/styles/main.scss',
+			dest: 'dist/style.css'
 		}
 
 	}, 
-	cssmin: {
-		options: {
-	        keepSpecialComments: 0
-	    },
-	    site: {
-				'app/mainStyle.css': 'app/styles/sass/main.scss'
-
+	// cssmin: {
+	// 	options: {
+	//         keepSpecialComments: 0
+	//     },
+	//     site: {
+	// 			'dist/style.css': 'app/styles/main.scss'
+	//     }
+	// },
+	concat: {
+	    options: {
+	      separator: ';\n',
+      		src: [path.scripts],
+  			dest: 'dist/built.js'
 	    }
 	}
 });
 
 
 grunt.registerTask('dev', ['express', 'sass:dev', 'autoprefixer']);
-grunt.registerTask('prod', ['sass:prod', 'cssmin']);
+grunt.registerTask('prod', ['sass:prod', 'cssmin' ]);
 
 
 grunt.registerTask('default', ['dev', 'watch']);
