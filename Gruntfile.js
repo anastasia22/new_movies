@@ -20,8 +20,17 @@ grunt.initConfig({
 	pkg: grunt.file.readJSON('package.json'),
 	watch: {
 		scripts: {
-			files: [path.scripts, path.views],
-			tasks: ['copy'],
+			files: [path.scripts],
+			tasks: ['copy:scripts'],
+			options: {
+				livereload: {
+					port: 9876
+				}
+			}
+		},
+		views: {
+			files: [path.views],
+			tasks: ['copy:views'],
 			options: {
 				livereload: {
 					port: 9876

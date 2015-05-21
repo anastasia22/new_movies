@@ -1,11 +1,25 @@
-angular.module('springMovies').factory('TMDB', ['$http', function($http) {
-	var _baseUrl = "https://api.themoviedb.org/3/";
-	var _apiKey = 'api_key=7a135ff2c408f8e138e4645f83b30222';
+'use strict';
 
-	var movies = {
-		getMovie : function() {
-			return $http.get(_baseUrl+ 'movie/' + id + '?' + _apiKey);
+angular.module('springMovies').factory('imageLinksService', [function() {
+	var _hyperImageUrl = 'http://image.tmdb.org/t/p/w780/';
+	var _largeImageUrl = 'http://image.tmdb.org/t/p/w300/';
+	var _mediumImageUrl = 'http://image.tmdb.org/t/p/w185/';
+	var _smallImageUrl = 'http://image.tmdb.org/t/p/w92/';
+
+	var createImgPath = {
+		smallImgLink : function(path) {
+			return _smallImageUrl + path;
+		},
+		mediumImgLink : function(path) {
+			return _mediumImageUrl + path;
+		},
+		largeImgLink : function(path) {
+			return _largeImageUrl + path;
+		},
+		hyperImgLink : function(path) {
+			return _hyperImageUrl + path;
 		}
-	};	
-	return movies
+	};
+	return createImgPath;
+	
 }]);
