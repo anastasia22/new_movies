@@ -4,6 +4,9 @@
 angular.module('springMovies', [
 	'ngRoute',
   'springMovies.home',
-  'springMovies.movie'
+  'springMovies.movie',
+  'springMovies.movies',
+  'springMovies.news'
+  
 ])
 
