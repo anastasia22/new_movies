@@ -1,0 +1,26 @@
+<DOCTYPE html>
+<html ng-app="springMovies">
+  <head>
+    <title>Spring</title>
+    <link rel="stylesheet" href="style.css"></link>
+    <script src="//localhost:9876/livereload.js"></script>
+    <script type="text/javascript" src="scripts/vendors/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/vendors/angular-route.min.js"></script>
+  </head>
+  <body>
+    <div class='main-container'>
+      <header-info></header-info>
+      <left-menu></left-menu>
+      <ng-view></ng-view>
+      <footer-info></footer-info>
+    </div>
+  </body>
+  <script type="text/javascript" src="scripts/app.js"></script>
+  <script type="text/javascript" src="scripts/directives/headerDirective.js"></script>
+  <script type="text/javascript" src="scripts/directives/searchDirective.js"></script>
+  <script type="text/javascript" src="scripts/directives/menuDirective.js"></script>
+  <script type="text/javascript" src="scripts/directives/footerDirective.js"></script>
+  <script type="text/javascript" src="scripts/controllers/mainController.js"></script>
+  <script type="text/javascript" src="scripts/modules/movie.js"></script>
+  <script type="text/javascript" src="scripts/services/tmdbFactory.js"></script>
+</html>

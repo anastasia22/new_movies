@@ -3,19 +3,25 @@ grunt.loadNpmTasks('grunt-express-server');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-sass');
 grunt.loadNpmTasks('grunt-autoprefixer');
-// grunt.loadNpmTasks('grunt-contrib-cssmin');
 grunt.loadNpmTasks('grunt-contrib-concat');
+grunt.loadNpmTasks('grunt-contrib-copy');
+grunt.loadNpmTasks('grunt-contrib-clean');
+grunt.loadNpmTasks('grunt-mkdir');
 
 
 var path = {};
 path.scripts = 'app/scripts/**';
 path.sass = 'app/styles/**';
 path.views = 'app/views/*';
+path.index = './index.html'
+path.vendors = 'app/scripts/vendors/**'
 
 grunt.initConfig({
+	pkg: grunt.file.readJSON('package.json'),
 	watch: {
 		scripts: {
 			files: [path.scripts, path.views],
+			tasks: ['copy'],
 			options: {
 				livereload: {
 					port: 9876
@@ -25,6 +31,14 @@ grunt.initConfig({
 		styles: {
 			files: [path.sass],
 			tasks: ['sass:dev', 'autoprefixer'],
+			options: {
+				livereload: {
+					port: 9876
+				}
+			}
+		},
+		index: {
+			files: [path.index],
 			options: {
 				livereload: {
 					port: 9876
@@ -45,7 +59,6 @@ grunt.initConfig({
 	sass: {
 		dev: {
 			options: {
-				sourcemap: 'auto',
 				style: 'expanded',
 				lineNumbers: true
 			},
@@ -64,38 +77,46 @@ grunt.initConfig({
 		}
 	},
 	autoprefixer: {
-	    
-  		single_file: {
-  			options: {
+  		options: {
 	      browsers: ['last 2 versions', 'ie 8', 'ie 9']
   		},
-			src:'app/styles/main.scss',
+  		dev: {
+			src:'dist/style.css',
 			dest: 'dist/style.css'
 		}
 
 	}, 
-	// cssmin: {
-	// 	options: {
-	//         keepSpecialComments: 0
-	//     },
-	//     site: {
-	// 			'dist/style.css': 'app/styles/main.scss'
-	//     }
-	// },
+	
 	concat: {
 	    options: {
-	      separator: ';\n',
-      		src: [path.scripts],
+	    	separator: ';\n'
+	    },	
+    	prod: {
+      		src: ['app/scripts/controllers/**', 'app/scripts/directives/**', 'app/scripts/modules/**', 'app/scripts/services/**', 'app/scripts/app.js'],
   			dest: 'dist/built.js'
-	    }
-	}
+  		}
+	},
+	copy: {
+			scripts: {expand: true, cwd: 'app/scripts', src: ['**'], dest: 'dist/scripts'},
+			//index: {expand: true, src: [path.index], dest: 'dist/', filter: 'isFile', flatten: true},
+			views: {expand: true, cwd: 'app/views', src: ['**'], dest: 'dist/views'}
+	},
+	clean: ["dist/"],
+	mkdir: {
+		all: {
+			options: {
+		        create: ['dist']
+		    }
+		}
+      },
 });
 
+//build tasks
+grunt.registerTask('dev', ['clean', 'mkdir', 'sass:dev', 'autoprefixer', 'copy']);
+grunt.registerTask('prod', ['clean', 'mkdir', 'sass:prod', 'autoprefixer', 'concat']);
 
-grunt.registerTask('dev', ['express', 'sass:dev', 'autoprefixer']);
-grunt.registerTask('prod', ['sass:prod', 'cssmin' ]);
 
 
-grunt.registerTask('default', ['dev', 'watch']);
+grunt.registerTask('default', ['dev', 'express', 'watch']);
 
 
