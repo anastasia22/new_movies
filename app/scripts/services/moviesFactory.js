@@ -17,10 +17,10 @@ angular.module('springMovies').factory('movieDatabase', ['$http', function($http
 				case 'upcoming':
 					movies = $http.get(_baseUrl + 'movie/upcoming' + '?' + _apiKey)
 				break;
-				case 'top_rated':
+				case 'topRated':
 					movies = $http.get(_baseUrl + 'movie/top_rated' + '?' + _apiKey)
 				break;
-				case 'now_playing':
+				case 'nowPlaying':
 					movies = $http.get(_baseUrl + 'movie/now_playing' + '?' + _apiKey)
 				break;
 				default:
