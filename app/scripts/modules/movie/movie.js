@@ -5,7 +5,7 @@ angular.module('springMovies.movie', [])
 	.config(function($routeProvider) {
 	  $routeProvider
 		.when('/movie/:id', {
-		    templateUrl: '../views/movie.html',
+		    templateUrl: 'scripts/modules/movie/movie.html',
 		    controller: 'movieController'
 		})
 	    

@@ -5,7 +5,7 @@ angular.module('springMovies.news', [])
 	.config(function($routeProvider) {
 	  $routeProvider
 		.when('/news', {
-		    templateUrl: '../views/news.html',
+		    templateUrl: 'news.html',
 		    controller: 'newsController'
 		})
 	    

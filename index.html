@@ -1,6 +1,7 @@
 <DOCTYPE html>
 <html ng-app="springMovies">
   <head>
+    <meta http-equiv="content-type" content="text/html;" charset="UTF-8">
     <title>Spring</title>
     <link rel="stylesheet" href="style.css"></link>
     <script src="//localhost:9876/livereload.js"></script>
@@ -10,22 +11,19 @@
   <body>
     <div class='main-container'>
       <header-info></header-info>
-      <div class="container">
-        <ng-view></ng-view>
-      </div>
+      <div ng-view></div>
       <footer-info></footer-info>
     </div>
   </body>
   <script type="text/javascript" src="scripts/app.js"></script>
-  <script type="text/javascript" src="scripts/directives/headerDirective.js"></script>
-  <script type="text/javascript" src="scripts/directives/searchDirective.js"></script>
-  <script type="text/javascript" src="scripts/directives/menuDirective.js"></script>
-  <script type="text/javascript" src="scripts/directives/footerDirective.js"></script>
+  <script type="text/javascript" src="scripts/directives/header/headerDirective.js"></script>
+  <script type="text/javascript" src="scripts/directives/search/searchDirective.js"></script>
+  <script type="text/javascript" src="scripts/directives/footer/footerDirective.js"></script>
   <script type="text/javascript" src="scripts/controllers/mainController.js"></script>
-  <script type="text/javascript" src="scripts/modules/home.js"></script>
-  <script type="text/javascript" src="scripts/modules/movie.js"></script>
-  <script type="text/javascript" src="scripts/modules/movies.js"></script>
-  <script type="text/javascript" src="scripts/modules/news.js"></script>
-  <script type="text/javascript" src="scripts/services/moviesFactory.js"></script>
-  <script type="text/javascript" src="scripts/services/service.js"></script>
+  <script type="text/javascript" src="scripts/modules/home/home.js"></script>
+  <script type="text/javascript" src="scripts/modules/movie/movie.js"></script>
+  <script type="text/javascript" src="scripts/modules/movies/movies.js"></script>
+  <script type="text/javascript" src="scripts/modules/news/news.js"></script>
+  <script type="text/javascript" src="scripts/services/databaseFactory.js"></script>
+  <script type="text/javascript" src="scripts/services/services.js"></script>
 </html>

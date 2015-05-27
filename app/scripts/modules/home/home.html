@@ -1,0 +1,134 @@
+<div class='home'>
+
+
+	
+	<div class="home__banner" ng-hide='hideNowPlaying'>
+		<div class="home__banner__container" >
+			
+			<div class='nowPlayingMovie' ng-repeat = "movie in NowPlaying">
+				<img ng-src={{movie.poster}}/>
+				<a href='/#/movie/{{movie.id}}'>{{movie.title}}</a>
+				<p>{{movie.year}}</p>
+				<p>{{movie.fullDate}}</p>
+				<p>{{movie.vote}}/10</p>
+				<p>{{movie.runtime}} min</p>
+				<div>
+					<span ng-repeat = "genre in movie.genres" href="">{{genre.name}}</span>
+				</div>
+				<a href="">Watch Trailer</a>
+				<iframe wmode="Opaque" height="360" src="http://www.youtube.com/embed/tmeOjFno6Do"></iframe>
+			</div>
+			
+		</div>
+		
+	</div>
+
+	<div class="" ng-hide='hideDiscovers'>
+	{{discoverType}}
+			{{discoverKind}}
+			{{discoverGenre}}
+		<div>
+			<div>	
+				<input type="radio" value="popular" name="type" ng-model="discoverType" ng-change="checkDiscover()">
+				<input type="radio" value="latest" name="type" ng-model="discoverType" ng-change="checkDiscover()">
+				<input type="radio" value="movies" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">
+				<input type="radio" value="tvshows" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">	
+			</div>
+				<input type="radio" value="thriller" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+				<input type="radio" value="fantasy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+				<input type="radio" value="horror" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+				<input type="radio" value="comedy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+				<input type="radio" value="romance" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+				<input type="radio" value="adventure" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+				<input type="radio" value="documentary" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+				<input type="radio" value="drama" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+				<input type="radio" value="for-kids" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">				
+			<div>	
+
+			</div>
+
+			<div>
+				<div ng-repeat='movie in discovers'>
+						<div>	
+							<img ng-src="{{movie.poster}}" alt="">
+							<a href="/#/movie/{{movie.id}}">{{movie.title || movie.name}}</a>
+							<span>	{{movie.fullDate}}</span>
+						</div>
+				</div>
+				
+			</div>
+		</div>
+
+	</div>
+
+	<div class="home__popPersons" ng-hide='hidePopPersons'>
+		 
+		<div ng-repeat='person in popPersons'>
+			<a href='/#/actor/{{person.id}}'>
+				<img ng-src="{{person.profile}}" alt="">
+			</a>
+			<h1>
+				<a href='/#/actor/{{person.id}}'>{{person.name}}</a>
+			</h1>
+			<a href='/#/movie/{{person.movie.id}}'>{{person.movie.title}}</a>
+		</div> 
+		
+	</div>
+
+	<div class="home__upcoming" ng-hide='hideUpcoming'>
+		
+		<div>
+			<a href="/#/movie/{{Upcoming[0].id}}">
+				<img ng-src="{{Upcoming[0].poster}}" alt="">
+			</a>
+			<h3>{{Upcoming[0].title}}</h3>
+		</div>
+		<div>
+			<div ng-repeat="movie in Upcoming | filter: upcomingFilter">
+				<a href="/#/movie/{{movie.id}}">{{movie.title}}</a>
+				<span>{{movie.fullDate}}</span>
+				<span>{{movie.vote_average}}</span>
+			</div>
+		</div>
+			
+	</div>		
+	<div class="home__topRated" ng-hide='hideTopRated'>
+		<p>Top Rated</p>
+		<table>
+			<tr ng-repeat='movie in TopRated'>
+				<td>{{ $index +1 }}</td>
+				<td><img ng-src="{{movie.poster}}" alt=""></td>
+				<td>
+					{{movie.title}}
+					<span ng-repeat='genre in movie.genres'>
+						{{genre.name}}
+					</span>
+				</td>
+				<td>
+					rate: {{movie.vote_average}}
+				</td>
+				<td>watch</td>
+			</tr>
+		</table>
+			
+	</div>
+	
+	<div class="news" ng-hide='hideNews'>
+		 
+		<div>
+			<img ng-src="http://static01.nyt.com/{{news[0].multimedia[0].url}}" alt="">
+			<span>{{news[0].date}}</span>
+			<a href="{{news[0].web_url}}" ng-bind-html = 'news[0].headline.main | html'></a>
+			<div ng-bind-html = 'news[0].lead_paragraph | html'></div>
+		</div>
+		<div ng-repeat='block in news | filter: newsFilter'>
+			<img ng-src="http://static01.nyt.com/{{block.multimedia[0].url}}" alt="">
+			<a href="{{block.web_url}}" ng-bind-html = 'block.headline.main | html'></a>
+			<span>{{block.date}}</span>
+		</div>
+		
+	</div> 
+		
+
+	
+</div>

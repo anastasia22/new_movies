@@ -3,7 +3,7 @@
 angular.module('springMovies').directive('footerInfo', function() {
 	return {
 		restrict: 'E',
-		templateUrl: '../../views/footer-info.html',
+		templateUrl: 'scripts/directives/footer/footer-info.html',
 		controller: function() {
 		}
 	}
