@@ -38,21 +38,38 @@ angular.module('springMovies.home', [])
 				return !el.primary;
 			};
 
-			$scope.slide = function(dir) {
-				if (dir === 'next') {
-					$scope.NowPlaying[($scope.currSlide + 1)].isShown = true;
+			//next sholud be removed to slider service
+				$scope.slide = function(dir) {
+					if (dir === 'next') {
+						if ($scope.currSlide === 3) {$scope.showNextArrow = false}	
+						$scope.NowPlaying[($scope.currSlide + 1)].isShown = true;
+						$scope.NowPlaying[$scope.currSlide].isShown = false;
+						++$scope.currSlide;
+						if ($scope.currSlide === 1) {$scope.showPrevArrow = true}
+						
+					} else if (dir === 'prev') {
+						if ($scope.currSlide === 1) {$scope.showPrevArrow = false}
+						$scope.NowPlaying[($scope.currSlide - 1)].isShown = true;
+						$scope.NowPlaying[$scope.currSlide].isShown = false;
+						--$scope.currSlide;
+						if ($scope.currSlide === 3) {$scope.showNextArrow = true}	
+					}
+				};
+				$scope.slideTo = function(num){
+					$scope.NowPlaying[num].isShown = true;
 					$scope.NowPlaying[$scope.currSlide].isShown = false;
-					++$scope.currSlide;
-					if ($scope.currSlide === 1) {$scope.showPrevArrow = true}
-					if ($scope.currSlide === 4) {$scope.showNextArrow = false}	
-				} else if (dir === 'prev') {
-					if ($scope.currSlide === 1) {$scope.showPrevArrow = false}
-					if ($scope.currSlide === 4) {$scope.showNextArrow = true}	
-					$scope.NowPlaying[($scope.currSlide - 1)].isShown = true;
-					$scope.NowPlaying[$scope.currSlide].isShown = false;
-					--$scope.currSlide;
-				}
-			};
+					$scope.currSlide = num;
+					if ($scope.currSlide === 0) {
+						$scope.showPrevArrow = false;
+						$scope.showNextArrow = true;
+					} else if ($scope.currSlide === 4) {
+						$scope.showPrevArrow = true;
+						$scope.showNextArrow = false;
+					} else {
+						$scope.showPrevArrow = true;
+						$scope.showNextArrow = true;
+					}	
+				};
 			
 			$scope.showTrailer = function(url){
 				$scope.subview = !$scope.subview;

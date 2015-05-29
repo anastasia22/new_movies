@@ -38,4 +38,23 @@
 			  left: 50px;
 		}
 	}
+	&__slider-points {
+		position:absolute;
+		z-index:10;
+		bottom: 0;
+  	left: 500px;
+	}
 }
+
+.sliderPoint {
+	width:10px;
+	height:10px;
+	background-color:red;
+	margin: 10px;
+	float:left;
+	&.sliderPointActive {
+		background-color:blue;
+	}
+}
+
+

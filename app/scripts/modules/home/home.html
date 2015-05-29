@@ -1,9 +1,6 @@
 <div class='home'>
 
-
-	
 	<div class="home__banner" ng-hide='hideNowPlaying'>
-			
 			<div class='nowPlayingMovie' ng-repeat = "movie in NowPlaying">
 				<div class='nowPlayingMovie__main-cont' ng-show="movie.isShown">
 					<div class='nowPlayingMovie__img-cont'>
@@ -32,27 +29,73 @@
 				ng-click="slide('prev')"
 				ng-show="showPrevArrow"
 			></div>
-		
+			<div class="nowPlayingMovie__slider-points">
+				<div 
+					class="sliderPoint" 
+					ng-repeat="movie in NowPlaying"
+					ng-class="{sliderPointActive: $index==currSlide}"
+					ng-click="slideTo($index)">					
+				</div>
+			</div>
 	</div>
 
 	 <div class="" ng-hide='hideDiscovers'>
 
 		<div>
 			<div>	
-				<input type="radio" value="popular" name="type" ng-model="discoverType" ng-change="checkDiscover()">
-				<input type="radio" value="latest" name="type" ng-model="discoverType" ng-change="checkDiscover()">
-				<input type="radio" value="movies" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">
-				<input type="radio" value="tvshows" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">	
+				<label>
+					<input type="radio" value="popular" name="type" ng-model="discoverType" ng-change="checkDiscover()">
+					<span>Popular</span>
+				</label>
+				<label>
+					<input type="radio" value="latest" name="type" ng-model="discoverType" ng-change="checkDiscover()">
+					<span>latest</span>
+				</label>
+				<label>
+					<input type="radio" value="movies" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">
+					<span>Movies</span>
+				</label>
+				<label>
+					<input type="radio" value="tvshows" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">	
+					<span>TV Shows</span>
+				</label>
 			</div>
-				<input type="radio" value="thriller" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
-				<input type="radio" value="fantasy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
-				<input type="radio" value="horror" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
-				<input type="radio" value="comedy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
-				<input type="radio" value="romance" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
-				<input type="radio" value="adventure" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
-				<input type="radio" value="documentary" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
-				<input type="radio" value="drama" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
-				<input type="radio" value="for-kids" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">				
+				<label>
+					<input type="radio" value="thriller" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+					<span>Thriller</span>
+				</label>
+				<label>
+					<input type="radio" value="fantasy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+					<span>Fantasy</span>
+				</label>
+				<label>
+					<input type="radio" value="horror" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+					<span>Horror</span>
+				</label>
+				<label>
+					<input type="radio" value="comedy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+					<span>Comedy</span>
+				</label>
+				<label>
+					<input type="radio" value="romance" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+					<span>Romance</span>
+				</label>
+				<label>
+					<input type="radio" value="adventure" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+					<span>Adventure</span>
+				</label>
+				<label>
+					<input type="radio" value="documentary" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+					<span>Documentary</span>
+				</label>
+				<label>
+					<input type="radio" value="drama" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+					<span>Drama</span>
+				</label>
+				<label>
+					<input type="radio" value="for-kids" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">				
+					<span>For Kids</span>
+				</label>
 			<div>	
 
 			</div>
