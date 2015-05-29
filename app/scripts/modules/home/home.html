@@ -1,12 +1,12 @@
 <div class='home'>
 
 	<div class="home__banner" ng-hide='hideNowPlaying'>
-			<div class='nowPlayingMovie' ng-repeat = "movie in NowPlaying">
-				<div class='nowPlayingMovie__main-cont' ng-show="movie.isShown">
-					<div class='nowPlayingMovie__img-cont'>
+		<div class='nowPlaying' ng-repeat = "movie in NowPlaying">
+				<div class='nowPlaying__main-cont' ng-show="movie.isShown">
+					<div class='nowPlaying__img-cont'>
 						<img ng-src={{movie.poster}}/>
 					</div>
-						<div class='nowPlayingMovie__data-cont'>
+						<div class='nowPlaying__data-cont'>
 							<a href='/#/movie/{{movie.id}}'>{{movie.title}}</a>
 							<p>{{movie.year}}</p>
 							<p>{{movie.fullDate}}</p>
@@ -18,38 +18,38 @@
 							<a href="/#/home/trailer/{{movie.trailer}}" ng-click="showTrailer(movie.trailer)">Watch Trailer</a>
 						</div>
 				</div>
-			</div>
+		</div>
+		<div 
+			class="nowPlaying__arrows nowPlaying__arrows--next" 
+			ng-click="slide('next')"
+			ng-show="showNextArrow"
+		></div>
+		<div 
+			class="nowPlaying__arrows nowPlaying__arrows--prev" 
+			ng-click="slide('prev')"
+			ng-show="showPrevArrow"
+		></div>
+		<div class="nowPlaying__sliderPoints">
 			<div 
-				class="nowPlayingMovie__arrows nowPlayingMovie__arrows--next" 
-				ng-click="slide('next')"
-				ng-show="showNextArrow"
-			></div>
-			<div 
-				class="nowPlayingMovie__arrows nowPlayingMovie__arrows--prev" 
-				ng-click="slide('prev')"
-				ng-show="showPrevArrow"
-			></div>
-			<div class="nowPlayingMovie__slider-points">
-				<div 
-					class="sliderPoint" 
-					ng-repeat="movie in NowPlaying"
-					ng-class="{sliderPointActive: $index==currSlide}"
-					ng-click="slideTo($index)">					
-				</div>
+				class="sliderPoint" 
+				ng-repeat="movie in NowPlaying"
+				ng-class="{sliderPointActive: $index==currSlide}"
+				ng-click="slideTo($index)">					
 			</div>
+		</div>
 	</div>
 
-	 <div class="" ng-hide='hideDiscovers'>
-
-		<div>
-			<div>	
+	<div class="home__discover" ng-hide='hideDiscovers'>
+		<div class="discover">
+		<p class="blockName">discover</p>
+			<div class="discover__typeControls">	
 				<label>
 					<input type="radio" value="popular" name="type" ng-model="discoverType" ng-change="checkDiscover()">
 					<span>Popular</span>
 				</label>
 				<label>
 					<input type="radio" value="latest" name="type" ng-model="discoverType" ng-change="checkDiscover()">
-					<span>latest</span>
+					<span>Latest</span>
 				</label>
 				<label>
 					<input type="radio" value="movies" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">
@@ -60,6 +60,7 @@
 					<span>TV Shows</span>
 				</label>
 			</div>
+			<div class="discover__genreControls">
 				<label>
 					<input type="radio" value="thriller" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
 					<span>Thriller</span>
@@ -96,22 +97,19 @@
 					<input type="radio" value="for-kids" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">				
 					<span>For Kids</span>
 				</label>
-			<div>	
-
 			</div>
-
-			<div>
-				<div ng-repeat='movie in discovers'>
+			<div class="discover__results">
+				<div>
+					<div ng-repeat='movie in discovers'>
 						<div>	
 							<img ng-src="{{movie.poster}}" alt="">
 							<a href="/#/movie/{{movie.id}}">{{movie.title || movie.name}}</a>
 							<span>	{{movie.fullDate}}</span>
 						</div>
+					</div>
 				</div>
-				
 			</div>
 		</div>
-
 	</div> 
 
 	<div class="home__popPersons" ng-hide='hidePopPersons'>

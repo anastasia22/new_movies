@@ -1,12 +1,16 @@
 .home {
 	&__banner {
-	overflow:hidden;
-	position:relative;
-	height:450px;
-
+		overflow:hidden;
+		position:relative;
+		height:450px;
+		margin-bottom: 50px;
+	}
+	&__discover {
+		margin: 0 130px;
+		height:370px;
 	}
 }
-.nowPlayingMovie {
+.nowPlaying {
 	position:absolute;
 	z-index: 5;
 	&__main-cont {
@@ -22,7 +26,6 @@
 		position:absolute;
 		top:70px;
 		left:70px;
-		
 	}
 	&__arrows {
 		width:50px;
@@ -38,11 +41,11 @@
 			  left: 50px;
 		}
 	}
-	&__slider-points {
+	&__sliderPoints {
 		position:absolute;
 		z-index:10;
 		bottom: 0;
-  	left: 500px;
+  		left: 500px;
 	}
 }
 
@@ -54,6 +57,42 @@
 	float:left;
 	&.sliderPointActive {
 		background-color:blue;
+	}
+}
+
+.discover {
+	&__typeControls {
+		height: 100%;
+		float: left;
+		width: 220px;
+		label {
+			display: block;
+			height: 37px;
+		}
+		input {
+			display:none;
+		}
+		span {
+			display:block;
+			width: 145px;
+			height: 100%;
+			border-radius: 15px;
+			line-height: 37px;
+
+		}
+		input:checked+span {
+			background-color: blue;
+		}
+		span:hover {
+			background-color: gray;
+		}
+	}
+	&__genreControls {
+		float: left;
+  		width: 75%;
+	}
+	&__results {
+		float: left;
 	}
 }
 
