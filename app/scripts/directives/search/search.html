@@ -1,12 +1,25 @@
 <form>
 	<input type="text" placeholder="Search..."/>
 	<label>
-		<input type="radio" name="search" value="movie" checked="checked"/>
+		<input 
+			type="radio" 
+			name="search" 
+			value="movie" 
+			ng-model="searchObj"
+			ng-change="changeQuickSearch()"/>
 		<span>Movie</span>
 	</label>
 	<label>
-		<input type="radio" name="search" value="person"/>
+		<input type="radio" 
+			name="search" 
+			value="person" 
+			ng-model="searchObj"
+			ng-change="changeQuickSearch()"/>
 		<span>Person</span>
 	</label>
-	<input type="button" value="Search"/>
+	<input 
+		type="button" 
+		value="Search"
+		ng-model="keyword"
+		/>
 </form>	

@@ -9,7 +9,7 @@ angular.module('springMovies').factory('movieDatabase', ['$http', function($http
 			return $http.get(_baseUrl+ 'movie/' + movieId + '?'+ _apiKey);
 		},
 		getFullMovieInfo: function(movieId) {
-			return $http.get(_baseUrl+ 'movie/' + movieId + '?' + _apiKey);
+			return $http.get(_baseUrl+ 'movie/' + movieId + '?' + _apiKey + '&append_to_response=trailers,overviews');
 		},
 		getHomeMovies: function(type) {
 			var movies;

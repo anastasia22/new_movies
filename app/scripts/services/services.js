@@ -75,7 +75,7 @@ angular.module('springMovies').factory('timeFactory', function() {
 	}
 });
 
-angular.module('springMovies.home').factory('homeFactory', ['movieDatabase', 'imageLinksService', 'timeFactory', 
+angular.module('springMovies.home').service('homeFactory', ['movieDatabase', 'imageLinksService', 'timeFactory', 
 	function(movieDatabase, imageLinksService, timeFactory) {
 		return {
 			checkPopPersons: function(persons) {
@@ -86,8 +86,8 @@ angular.module('springMovies.home').factory('homeFactory', ['movieDatabase', 'im
 				})
 			},
 			modifyNowPlaying: function(data) {
-				var movies = data.results.slice(0, 3);
-				return movies.map(function(movie){
+				var movies = data.results.slice(0, 5);
+				return movies.map(function(movie, index){
 					var mov = {
 						id: movie.id,
 						title: movie.title,
@@ -95,6 +95,9 @@ angular.module('springMovies.home').factory('homeFactory', ['movieDatabase', 'im
 						poster: imageLinksService.giantImgLink(movie.backdrop_path),
 						year: movie.release_date.substring(0, movie.release_date.indexOf("-")),
 						fullDate: timeFactory.getHomePageDateFormat(movie.release_date)
+					};
+					if (index == 0) {
+						mov.isShown = true
 					};
 					movieDatabase.getFullMovieInfo(movie.id).success(function(data){
 						mov.genres = data.genres;
@@ -141,3 +144,4 @@ angular.module('springMovies.home').factory('homeFactory', ['movieDatabase', 'im
 		}
 	
 }]);
+

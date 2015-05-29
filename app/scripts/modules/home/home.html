@@ -3,30 +3,40 @@
 
 	
 	<div class="home__banner" ng-hide='hideNowPlaying'>
-		<div class="home__banner__container" >
 			
 			<div class='nowPlayingMovie' ng-repeat = "movie in NowPlaying">
-				<img ng-src={{movie.poster}}/>
-				<a href='/#/movie/{{movie.id}}'>{{movie.title}}</a>
-				<p>{{movie.year}}</p>
-				<p>{{movie.fullDate}}</p>
-				<p>{{movie.vote}}/10</p>
-				<p>{{movie.runtime}} min</p>
-				<div>
-					<span ng-repeat = "genre in movie.genres" href="">{{genre.name}}</span>
+				<div class='nowPlayingMovie__main-cont' ng-show="movie.isShown">
+					<div class='nowPlayingMovie__img-cont'>
+						<img ng-src={{movie.poster}}/>
+					</div>
+						<div class='nowPlayingMovie__data-cont'>
+							<a href='/#/movie/{{movie.id}}'>{{movie.title}}</a>
+							<p>{{movie.year}}</p>
+							<p>{{movie.fullDate}}</p>
+							<p>{{movie.vote}}/10</p>
+							<p>{{movie.runtime}} min</p>
+							<div>
+								<span ng-repeat = "genre in movie.genres" href="">{{genre.name}}</span>
+							</div>
+							<a href="/#/home/trailer/{{movie.trailer}}" ng-click="showTrailer(movie.trailer)">Watch Trailer</a>
+						</div>
 				</div>
-				<a href="">Watch Trailer</a>
-				<iframe wmode="Opaque" height="360" src="http://www.youtube.com/embed/tmeOjFno6Do"></iframe>
 			</div>
-			
-		</div>
+			<div 
+				class="nowPlayingMovie__arrows nowPlayingMovie__arrows--next" 
+				ng-click="slide('next')"
+				ng-show="showNextArrow"
+			></div>
+			<div 
+				class="nowPlayingMovie__arrows nowPlayingMovie__arrows--prev" 
+				ng-click="slide('prev')"
+				ng-show="showPrevArrow"
+			></div>
 		
 	</div>
 
-	<div class="" ng-hide='hideDiscovers'>
-	{{discoverType}}
-			{{discoverKind}}
-			{{discoverGenre}}
+	 <div class="" ng-hide='hideDiscovers'>
+
 		<div>
 			<div>	
 				<input type="radio" value="popular" name="type" ng-model="discoverType" ng-change="checkDiscover()">
@@ -59,7 +69,7 @@
 			</div>
 		</div>
 
-	</div>
+	</div> 
 
 	<div class="home__popPersons" ng-hide='hidePopPersons'>
 		 
@@ -91,7 +101,7 @@
 			</div>
 		</div>
 			
-	</div>		
+	</div> 	
 	<div class="home__topRated" ng-hide='hideTopRated'>
 		<p>Top Rated</p>
 		<table>
@@ -128,7 +138,19 @@
 		</div>
 		
 	</div> 
-		
+			
 
-	
+	<div 
+	class="modal"
+	ng-show="subview"
+	ng-click="closeModal()">
+
+	<div class="modal__container">
+		
+		<iframe wmode="Opaque" height="360" src="{{params}}"></iframe>
+		
+	</div>
+
+
+</div>
 </div>

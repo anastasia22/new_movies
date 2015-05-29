@@ -8,7 +8,10 @@ angular.module('springMovies.home', [])
 		    templateUrl: 'scripts/modules/home/home.html',
 		    controller: 'homeController'
 		})
-	    
+		.when('/home/trailer/:param', {
+			templateUrl: 'scripts/modules/home/home.html',
+		    controller: 'homeController'
+		})
 	 })
 	.filter('html',function($sce){
 	    return function(input){
@@ -23,6 +26,10 @@ angular.module('springMovies.home', [])
 			$scope.discoverType= 'popular';
 			$scope.discoverKind= 'movies';
 			$scope.discoverGenre= 'fantasy';
+			$scope.subview = false;
+			$scope.currSlide = 0;
+			$scope.showNextArrow = true;
+			$scope.showPrevArrow = false;
 
 			$scope.upcomingFilter = function(el) {
 				return !el.poster;
@@ -30,6 +37,33 @@ angular.module('springMovies.home', [])
 			$scope.newsFilter = function(el) {
 				return !el.primary;
 			};
+
+			$scope.slide = function(dir) {
+				if (dir === 'next') {
+					$scope.NowPlaying[($scope.currSlide + 1)].isShown = true;
+					$scope.NowPlaying[$scope.currSlide].isShown = false;
+					++$scope.currSlide;
+					if ($scope.currSlide === 1) {$scope.showPrevArrow = true}
+					if ($scope.currSlide === 4) {$scope.showNextArrow = false}	
+				} else if (dir === 'prev') {
+					if ($scope.currSlide === 1) {$scope.showPrevArrow = false}
+					if ($scope.currSlide === 4) {$scope.showNextArrow = true}	
+					$scope.NowPlaying[($scope.currSlide - 1)].isShown = true;
+					$scope.NowPlaying[$scope.currSlide].isShown = false;
+					--$scope.currSlide;
+				}
+			};
+			
+			$scope.showTrailer = function(url){
+				$scope.subview = !$scope.subview;
+			};
+
+			if ($routeParams.param) {
+				$scope.showTrailer($routeParams.param);
+				$scope.params = $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + $routeParams.param);
+			} else {
+				$scope.params = ''
+			}
 
 			$scope.checkDiscover = function() {
 				movieDatabase.discoverMovies($scope.discoverKind, $scope.discoverGenre, $scope.discoverType).success(function(data) {
@@ -66,6 +100,7 @@ angular.module('springMovies.home', [])
 			}).error(function(){
 				$scope.hideNews = true;
 			});
+
 
 			
 	}]);
