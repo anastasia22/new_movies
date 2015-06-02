@@ -146,44 +146,24 @@ angular.module('springMovies.home').service('homeFactory', ['movieDatabase', 'im
 }]);
 
 angular.module('springMovies.home').service('homeSlider', function() {
-	var showNextArrow, showPrevArrow;
+	
+	var prev, next;
 
 	return {
 		slide: function (data, curr, params) {
-			// currentSlide = curr;
 			data[curr].isShown = false; 
-			if (params === "next") {
-				if (curr === 3) {showNextArrow = false}	
-				data[(curr + 1)].isShown = true;
-				
-				++curr;
-				if (curr === 1) {showPrevArrow = true}
-			} else if (params === "prev") {
-				if (curr === 1) {showPrevArrow = false}	
-				data[(curr - 1)].isShown = true;
-				--curr;
-				if (curr === 3) {showNextArrow = true}	
-			} else {
-				data[params].isShown = true;
-				curr = num;
-				if (curr === 0) {
-					showPrevArrow = false;
-					showNextArrow = true;
-				} else if (curr === 4) {
-					showPrevArrow = true;
-					showNextArrow = false;
-				} else {
-					showPrevArrow = true;
-					showNextArrow = true;
-				}	
-			}
+			data[params].isShown = true;
+			prev = !(params === 0);
+			next = !(params === 4);
 			return {
-				prev: showPrevArrow,
-				next: showNextArrow,
+				prev: prev,
+				next: next,
 				data: data,
-				curr: curr
+				curr: params
 			}
 		}
 	}
+
+
 });
 

@@ -38,45 +38,18 @@ angular.module('springMovies.home', [])
 				return !el.primary;
 			};
 
-			//next sholud be removed to slider service
-				// $scope.slide = function(dir) {
-				// 	if (dir === 'next') {
-				// 		if ($scope.currSlide === 3) {$scope.showNextArrow = false}	
-				// 		$scope.NowPlaying[($scope.currSlide + 1)].isShown = true;
-				// 		$scope.NowPlaying[$scope.currSlide].isShown = false;
-				// 		++$scope.currSlide;
-				// 		if ($scope.currSlide === 1) {$scope.showPrevArrow = true}
-						
-				// 	} else if (dir === 'prev') {
-				// 		if ($scope.currSlide === 1) {$scope.showPrevArrow = false}
-				// 		$scope.NowPlaying[($scope.currSlide - 1)].isShown = true;
-				// 		$scope.NowPlaying[$scope.currSlide].isShown = false;
-				// 		--$scope.currSlide;
-				// 		if ($scope.currSlide === 3) {$scope.showNextArrow = true}	
-				// 	}
-				// };
-				// $scope.slideTo = function(num){
-				// 	$scope.NowPlaying[num].isShown = true;
-				// 	$scope.NowPlaying[$scope.currSlide].isShown = false;
-				// 	$scope.currSlide = num;
-				// 	if ($scope.currSlide === 0) {
-				// 		$scope.showPrevArrow = false;
-				// 		$scope.showNextArrow = true;
-				// 	} else if ($scope.currSlide === 4) {
-				// 		$scope.showPrevArrow = true;
-				// 		$scope.showNextArrow = false;
-				// 	} else {
-				// 		$scope.showPrevArrow = true;
-				// 		$scope.showNextArrow = true;
-				// 	}	
-				// };
-				$scope.slide = function(param) {
-					var output = homeSlider.slide($scope.currSlide, $scope.NowPlaying, param);
-					$scope.currSlide = output.curr;
-					$scope.showNextArrow = output.next;
-					$scope.showPrevArrow = output.prev;
-					$scope.NowPlaying = output.data;
+			$scope.slide = function(param) {
+				if (param === 'next') {
+					param = $scope.currSlide + 1;
+				} else if (param === 'prev') {
+					param = $scope.currSlide - 1;
 				};
+				var output = homeSlider.slide($scope.NowPlaying, $scope.currSlide, param);
+				$scope.currSlide = output.curr;
+				$scope.showNextArrow = output.next;
+				$scope.showPrevArrow = output.prev;
+				$scope.NowPlaying = output.data;
+			};
 			
 			$scope.showTrailer = function(url){
 				$scope.subview = !$scope.subview;
