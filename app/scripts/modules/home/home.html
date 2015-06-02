@@ -118,10 +118,12 @@
 					</label>
 				</div>
 				<div class="discover__results">
-					<div>
-						<div ng-repeat='movie in discovers'>
-							<div>	
+					<div class="discover__main-cont">
+						<div class="discover__result" ng-repeat='movie in discovers'>
+							<div class="discover__img-cont">	
 								<img ng-src="{{movie.poster}}" alt="">
+							</div>
+							<div class="discover__data-cont">
 								<a href="/#/movie/{{movie.id}}">{{movie.title || movie.name}}</a>
 								<span>	{{movie.fullDate}}</span>
 							</div>
