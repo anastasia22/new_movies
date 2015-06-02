@@ -27,6 +27,11 @@
 		top:70px;
 		left:70px;
 	}
+	
+	
+}
+
+.nav {
 	&__arrows {
 		width:50px;
 		height:50px;
@@ -35,65 +40,85 @@
 		position:absolute;
 		top:200px;
 		&--next {
-			  right: 50px;
+		  right: 50px;
 		}
 		&--prev {
 			  left: 50px;
 		}
 	}
-	&__sliderPoints {
+	&__dots {
 		position:absolute;
 		z-index:10;
-		bottom: 0;
-  		left: 500px;
+		bottom: 25px;
+		margin-left: auto;
+		margin-right: auto;
+		left: 0;
+		right: 0;
+		width: 105px;
+		.nav__dot {
+			width: 11px;
+			height: 11px;
+			margin: 5px;
+			display: inline-block;
+			border-radius: 50%;
+			border: 2px solid white;
+			cursor: pointer;
+			&.nav__dotActive {
+				border-color: $mainBlue;
+			}
+		}
 	}
 }
 
-.sliderPoint {
-	width:10px;
-	height:10px;
-	background-color:red;
-	margin: 10px;
-	float:left;
-	&.sliderPointActive {
-		background-color:blue;
-	}
-}
+
 
 .discover {
+	display:flex;
+	.column-left {
+		width:235px;
+	}
 	&__typeControls {
 		height: 100%;
-		float: left;
-		width: 220px;
-		label {
+		padding-top: 20px;
+		
+		.control-label {
 			display: block;
 			height: 37px;
+			margin-bottom: 15px;
 		}
-		input {
-			display:none;
-		}
-		span {
-			display:block;
+		.control-wrapper {
 			width: 145px;
-			height: 100%;
-			border-radius: 15px;
 			line-height: 37px;
-
-		}
-		input:checked+span {
-			background-color: blue;
-		}
-		span:hover {
-			background-color: gray;
+			
+			img {
+				width: 15px;
+				vertical-align: middle;
+				margin: 0px 15px;
+			
+			}
 		}
 	}
 	&__genreControls {
-		float: left;
-  		width: 75%;
+  		width: 100%;
+  		  margin-left: 50px;
+  		.control-label {
+			display: inline-block;
+			height: 30px;
+			margin-bottom: 15px;
+		}
+		.control-wrapper {
+	  		background-color: white;
+	  		border: 2px solid $mainGray;
+			min-width: 145px;
+			line-height: 30px;
+			  text-align: center;
+		}
+		
 	}
 	&__results {
-		float: left;
+		padding-left:20px;
 	}
 }
+
 
 

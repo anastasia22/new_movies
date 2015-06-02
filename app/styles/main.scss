@@ -8,20 +8,74 @@
 
 * {
 	box-sizing:border-box;
+
+}
+
+@font-face {
+	font-family: 'MavenPro';
+	src: url('fonts/Maven-Pro-Regular.otf')
+}
+@font-face {
+	font-family: 'MavenProBold';
+	src: url('fonts/Maven-Pro-Bold.otf')
 }
 
 body {
 	background: linear-gradient(90deg, $aqua 10%, $royalBlue 90%);
+	font-family: 'MavenPro';
+	color: $primaryFont;
+	font-size:14px;
 }
 
 .main-container {
-  background-color: #ECE9E6;
+  background-color: white;
   max-width: $contWidth;
   margin: 0 auto;
 }
 
 .blockName {
 	text-transform: uppercase;
+	font-family: 'MavenProBold';
+	color: $mainBlue;
+	font-size: 13px;
+	width: 100%;
+	padding-top: 8px;
+	margin-bottom: 20px;
+	p {
+		float: left;
+		  margin: 0 20px 0 0;
+	}
+	hr {
+		border: 0;
+		border-bottom: 1px solid $secondaryFont;
+	}
+}
+
+.clearfix:after{
+    content:'';
+    display:table;
+    clear:both;
+}
+
+.control-label {
+	
+	font-family: 'MavenProBold';
+	input {
+		display:none;
+	}
+	input:checked+span {
+		background-color: $mainBlue;
+		color:white;
+		border-color:$mainBlue;
+	}
+}
+.control-wrapper {
+	display:block;
+	height: 100%;
+	border-radius: 20px;
+	&:hover {
+		background-color: $mainGray;
+	}
 }
 
 

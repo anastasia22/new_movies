@@ -20,20 +20,20 @@
 				</div>
 		</div>
 		<div 
-			class="nowPlaying__arrows nowPlaying__arrows--next" 
+			class="nav__arrows nav__arrows--next" 
 			ng-click="slide('next')"
 			ng-show="showNextArrow"
 		></div>
 		<div 
-			class="nowPlaying__arrows nowPlaying__arrows--prev" 
+			class="nav__arrows nav__arrows--prev" 
 			ng-click="slide('prev')"
 			ng-show="showPrevArrow"
 		></div>
-		<div class="nowPlaying__sliderPoints">
+		<div class="nav__dots">
 			<div 
-				class="sliderPoint" 
+				class="nav__dot" 
 				ng-repeat="movie in NowPlaying"
-				ng-class="{sliderPointActive: $index==currSlide}"
+				ng-class="{nav__dotActive: $index==currSlide}"
 				ng-click="slide($index)">					
 			</div>
 		</div>
@@ -41,70 +41,90 @@
 
 	<div class="home__discover" ng-hide='hideDiscovers'>
 		<div class="discover">
-		<p class="blockName">discover</p>
-			<div class="discover__typeControls">	
-				<label>
-					<input type="radio" value="popular" name="type" ng-model="discoverType" ng-change="checkDiscover()">
-					<span>Popular</span>
-				</label>
-				<label>
-					<input type="radio" value="latest" name="type" ng-model="discoverType" ng-change="checkDiscover()">
-					<span>Latest</span>
-				</label>
-				<label>
-					<input type="radio" value="movies" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">
-					<span>Movies</span>
-				</label>
-				<label>
-					<input type="radio" value="tvshows" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">	
-					<span>TV Shows</span>
-				</label>
+			<div class="column-left">
+				<div class="blockName">
+					<p>discover</p>
+					<hr>
+					<div class="clearfix"></div>
+				</div>
+				<div class="discover__typeControls">	
+					<label class="control-label">
+						<input type="radio" value="popular" name="type" ng-model="discoverType" ng-change="checkDiscover()">
+						<span class="control-wrapper">
+							<img src="images/favorite.svg" alt="">
+							Popular
+						</span>
+					</label>
+					<label class="control-label">
+						<input type="radio" value="latest" name="type" ng-model="discoverType" ng-change="checkDiscover()">
+						<span class="control-wrapper">
+							<img src="images/latest.svg" alt="">
+							Latest
+						</span>
+					</label>
+					<label class="control-label">
+						<input type="radio" value="movies" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">
+						<span class="control-wrapper">
+							<img src="images/play.svg" alt="">
+							Movies
+						</span>
+					</label>
+					<label class="control-label">
+						<input type="radio" value="tvshows" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">	
+						<span class="control-wrapper">
+							<img src="images/monitor.svg" alt="">
+							TV Shows
+						</span>
+					</label>
+				</div>
 			</div>
-			<div class="discover__genreControls">
-				<label>
-					<input type="radio" value="thriller" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
-					<span>Thriller</span>
-				</label>
-				<label>
-					<input type="radio" value="fantasy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
-					<span>Fantasy</span>
-				</label>
-				<label>
-					<input type="radio" value="horror" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
-					<span>Horror</span>
-				</label>
-				<label>
-					<input type="radio" value="comedy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
-					<span>Comedy</span>
-				</label>
-				<label>
-					<input type="radio" value="romance" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
-					<span>Romance</span>
-				</label>
-				<label>
-					<input type="radio" value="adventure" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
-					<span>Adventure</span>
-				</label>
-				<label>
-					<input type="radio" value="documentary" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
-					<span>Documentary</span>
-				</label>
-				<label>
-					<input type="radio" value="drama" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
-					<span>Drama</span>
-				</label>
-				<label>
-					<input type="radio" value="for-kids" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">				
-					<span>For Kids</span>
-				</label>
-			</div>
-			<div class="discover__results">
-				<div>
-					<div ng-repeat='movie in discovers'>
-						<div>	
-							<img ng-src="{{movie.poster}}" alt="">
-							<a href="/#/movie/{{movie.id}}">{{movie.title || movie.name}}</a>
-							<span>	{{movie.fullDate}}</span>
+			<div class="column-right">
+				<div class="discover__genreControls">
+					<label class="control-label">
+						<input type="radio" value="thriller" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+						<span class="control-wrapper">Thriller</span>
+					</label>
+					<label class="control-label">
+						<input type="radio" value="fantasy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+						<span class="control-wrapper">Fantasy</span>
+					</label>
+					<label class="control-label">
+						<input type="radio" value="horror" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+						<span class="control-wrapper">Horror</span>
+					</label>
+					<label class="control-label">
+						<input type="radio" value="comedy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+						<span class="control-wrapper">Comedy</span>
+					</label>
+					<label class="control-label">
+						<input type="radio" value="romance" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+						<span class="control-wrapper">Romance</span>
+					</label>
+					<label class="control-label">
+						<input type="radio" value="adventure" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+						<span class="control-wrapper">Adventure</span>
+					</label>
+					<label class="control-label">
+						<input type="radio" value="documentary" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+						<span class="control-wrapper">Documentary</span>
+					</label>
+					<label class="control-label">
+						<input type="radio" value="drama" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
+						<span class="control-wrapper">Drama</span>
+					</label>
+					<label class="control-label">
+						<input type="radio" value="for-kids" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">				
+						<span class="control-wrapper">For Kids</span>
+					</label>
+				</div>
+				<div class="discover__results">
+					<div>
+						<div ng-repeat='movie in discovers'>
+							<div>	
+								<img ng-src="{{movie.poster}}" alt="">
+								<a href="/#/movie/{{movie.id}}">{{movie.title || movie.name}}</a>
+								<span>	{{movie.fullDate}}</span>
+							</div>
 						</div>
 					</div>
 				</div>

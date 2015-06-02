@@ -53,6 +53,15 @@ grunt.initConfig({
 					port: 9876
 				}
 			}
+		},
+		images: {
+			files: ['app/images/*'],
+			tasks: ['copy:img'],
+			options: {
+				livereload: {
+					port: 9876
+				}
+			}
 		}
 	},
 	express: {
@@ -108,7 +117,9 @@ grunt.initConfig({
 	copy: {
 			scripts: {expand: true, cwd: 'app/scripts', src: ['**'], dest: 'dist/scripts'},
 			//index: {expand: true, src: [path.index], dest: 'dist/', filter: 'isFile', flatten: true},
-			views: {expand: true, cwd: 'app/views', src: ['**'], dest: 'dist/views'}
+			views: {expand: true, cwd: 'app/views', src: ['**'], dest: 'dist/views'},
+			fonts: {expand: true, cwd: 'app/fonts', src: ['**'], dest: 'dist/fonts'},
+			img: {expand: true, cwd: 'app/images', src: ['**'], dest: 'dist/images'}
 	},
 	clean: ["dist/"],
 	mkdir: {
