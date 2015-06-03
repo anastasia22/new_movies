@@ -31,51 +31,14 @@
 	
 }
 
-.nav {
-	&__arrows {
-		width:50px;
-		height:50px;
-		background-color: orange;
-		z-index: 10;
-		position:absolute;
-		top:200px;
-		&--next {
-		  right: 50px;
-		}
-		&--prev {
-			  left: 50px;
-		}
-	}
-	&__dots {
-		position:absolute;
-		z-index:10;
-		bottom: 25px;
-		margin-left: auto;
-		margin-right: auto;
-		left: 0;
-		right: 0;
-		width: 105px;
-		.nav__dot {
-			width: 11px;
-			height: 11px;
-			margin: 5px;
-			display: inline-block;
-			border-radius: 50%;
-			border: 2px solid white;
-			cursor: pointer;
-			&.nav__dotActive {
-				border-color: $mainBlue;
-			}
-		}
-	}
-}
+
 
 
 
 .discover {
 	display:flex;
 	.column-left {
-		width:235px;
+		width:220px;
 		flex-shrink: 0;
 	}
 	&__typeControls {
@@ -101,7 +64,7 @@
 	}
 	&__genreControls {
   		    text-align: center;
-			  margin-bottom: 30px;
+			  margin-bottom: 25px;
   		.control-label {
 			display: inline-block;
 			height: 30px;
@@ -118,9 +81,41 @@
 		
 	}
 	&__results {
-		padding-left:20px;
+		padding:0 20px;
+		position:relative;
+		overflow: hidden;
 	}
-	&__result {}
+	&__main-cont {
+		width: 2000%;
+  		position: relative;
+  		padding: 0 40px;
+	}
+	&__result {
+		  width: 140px;
+		  float: left;
+		  margin-right: 20px;
+
+	}
+	&__img-cont {
+		width: 100%;
+		img {
+			width:100%;
+		}
+	}
+	&__data-cont {
+		padding-top:10px;
+		color: $secondaryFont;
+		text-align: center;
+		a {
+			text-decoration: none;
+			color:$primaryFont;
+		}
+		div {
+			margin-top:3px;
+		}
+
+	}
+	
 }
 
 

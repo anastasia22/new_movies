@@ -6,7 +6,8 @@
 					<div class='nowPlaying__img-cont'>
 						<img ng-src={{movie.poster}}/>
 					</div>
-						<div class='nowPlaying__data-cont'>
+				</div>
+				<div class='nowPlaying__data-cont' ng-show="movie.isShown">
 							<a href='/#/movie/{{movie.id}}'>{{movie.title}}</a>
 							<p>{{movie.year}}</p>
 							<p>{{movie.fullDate}}</p>
@@ -16,7 +17,6 @@
 								<span ng-repeat = "genre in movie.genres" href="">{{genre.name}}</span>
 							</div>
 							<a href="/#/home/trailer/{{movie.trailer}}" ng-click="showTrailer(movie.trailer)">Watch Trailer</a>
-						</div>
 				</div>
 		</div>
 		<div 
@@ -124,11 +124,17 @@
 								<img ng-src="{{movie.poster}}" alt="">
 							</div>
 							<div class="discover__data-cont">
-								<a href="/#/movie/{{movie.id}}">{{movie.title || movie.name}}</a>
-								<span>	{{movie.fullDate}}</span>
+								<a href="/#/movie/{{movie.id}}">{{movie.title || movie.name}}</a><br>
+								<div>	{{movie.fullDate}}</div>
 							</div>
 						</div>
 					</div>
+					<div 
+						class="nav__arrows nav__arrows--next" 
+					></div>
+					<div 
+						class="nav__arrows nav__arrows--prev" 
+					></div>
 				</div>
 			</div>
 		</div>

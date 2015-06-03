@@ -79,3 +79,77 @@ body {
 }
 
 
+.nav__arrows {
+	width:20px;
+	height:20px;
+	z-index: 10;
+	position:absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	cursor:pointer;
+	&:after {
+			content: '';
+			position: absolute;
+			top: 100%;
+			right: 85%;
+			height: 100%;
+			width: 10%;
+			background: $mainGray;
+	}
+	&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 10%;
+			background: $mainGray;
+			transform: skew(45deg, 0deg);
+	}
+	&--next {
+		left: 90%;
+		&:after {
+			transform: skew(-45deg, 0deg);
+		}
+		&:before {
+			transform: skew(45deg, 0deg);
+		}
+	}
+	&--prev {
+		right: 90%;
+		&:after {
+			transform: skew(-135deg, 0deg);
+		}
+		&:before {
+			transform: skew(135deg, 0deg);
+		}
+	}
+}
+
+.nav {
+	&__dots {
+		position:absolute;
+		z-index:10;
+		bottom: 25px;
+		margin-left: auto;
+		margin-right: auto;
+		left: 0;
+		right: 0;
+		width: 105px;
+		.nav__dot {
+			width: 11px;
+			height: 11px;
+			margin: 5px;
+			display: inline-block;
+			border-radius: 50%;
+			border: 2px solid white;
+			cursor: pointer;
+			&.nav__dotActive {
+				border-color: $mainBlue;
+			}
+		}
+	}
+}
