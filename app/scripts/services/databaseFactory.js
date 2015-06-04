@@ -27,7 +27,7 @@ angular.module('springMovies').factory('movieDatabase', ['$http', function($http
 
 			return movies;
 		},
-		getPopularPersons: function() {
+		getCelebrities: function() {
 			return $http.get(_baseUrl + 'person/popular' + '?' + _apiKey);
 		},
 		discoverMovies: function(kind, genre, type) {

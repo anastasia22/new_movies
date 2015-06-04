@@ -140,22 +140,35 @@
 		</div>
 	</div> 
 
-	<div class="home__popPersons" ng-hide='hidePopPersons'>
-		 
-		<div ng-repeat='person in popPersons'>
-			<a href='/#/actor/{{person.id}}'>
-				<img ng-src="{{person.profile}}" alt="">
-			</a>
-			<h1>
-				<a href='/#/actor/{{person.id}}'>{{person.name}}</a>
-			</h1>
-			<a href='/#/movie/{{person.movie.id}}'>{{person.movie.title}}</a>
+	<div class="home__celebrities" ng-hide='hideCelebrities'>
+		<div class="blockName">
+					<p>celebrities</p>
+					<hr>
+					<div class="clearfix"></div>
 		</div> 
-		
+		<div class="celebrities">	
+			<div ng-repeat='person in celebrities' class="celebrities__person">
+				<div class="celebrities__img-cont">	
+					<a href='/#/actor/{{person.id}}'>
+						<img ng-src="{{person.profile}}" alt="">
+					</a>
+				</div>
+				<div class="celebrities__data-cont">	
+					<h1 class="celebrities__name">
+						<a href='/#/actor/{{person.id}}'>{{person.name}}</a>
+					</h1>
+					<a class="celebrities__movie" href='/#/movie/{{person.movie.id}}'>{{person.movie.title}}</a>
+				</div>
+			</div> 
+		</div>
 	</div>
 
 	<div class="home__upcoming" ng-hide='hideUpcoming'>
-		
+		<div class="blockName">
+					<p>upcoming</p>
+					<hr>
+					<div class="clearfix"></div>
+		</div> 
 		<div>
 			<a href="/#/movie/{{Upcoming[0].id}}">
 				<img ng-src="{{Upcoming[0].poster}}" alt="">
@@ -172,7 +185,11 @@
 			
 	</div> 	
 	<div class="home__topRated" ng-hide='hideTopRated'>
-		<p>Top Rated</p>
+		<div class="blockName">
+					<p>top rated</p>
+					<hr>
+					<div class="clearfix"></div>
+		</div> 
 		<table>
 			<tr ng-repeat='movie in TopRated'>
 				<td>{{ $index +1 }}</td>

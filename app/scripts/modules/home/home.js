@@ -82,10 +82,10 @@ angular.module('springMovies.home', [])
 					});
 			});
 			// receiving popular persons info
-			movieDatabase.getPopularPersons().success(function(data) {
-				$scope.popPersons = homeFactory.checkPopPersons(data.results.slice(0,6));
+			movieDatabase.getCelebrities().success(function(data) {
+				$scope.celebrities = homeFactory.checkCelebrities(data.results.slice(0,6));
 			}).error(function() {
-				$scope.hidePopPersons= true;
+				$scope.hideCelebrities= true;
 			});
 			// receiving news
 			newsDatabase.getNews().success(function(data){

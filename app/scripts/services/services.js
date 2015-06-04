@@ -78,7 +78,7 @@ angular.module('springMovies').factory('timeFactory', function() {
 angular.module('springMovies.home').service('homeFactory', ['movieDatabase', 'imageLinksService', 'timeFactory', 
 	function(movieDatabase, imageLinksService, timeFactory) {
 		return {
-			checkPopPersons: function(persons) {
+			checkCelebrities: function(persons) {
 				return persons.map(function(person){
 					person.profile = imageLinksService.mediumImgLink(person.profile_path);
 					person.movie = person.known_for[0];
