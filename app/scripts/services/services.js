@@ -104,7 +104,7 @@ angular.module('springMovies.home').service('homeFactory', ['movieDatabase', 'im
 						mov.runtime = data.runtime;
 						mov.countries = data.production_countries;
 						mov.trailer = data.trailers.youtube[0].source;
-					}).error();
+					}).error(function(){});
 					return mov;
 				});
 			},
