@@ -179,5 +179,66 @@
 	}
 }
 
-
+.upcoming {
+	  padding-top: 15px;
+	&__column-left {
+		width: 160px;
+		float:left;
+		a {
+			width:140px;
+			display:block;
+			img {
+				width:100%
+			}
+		}
+		h3 {
+			font-size: 14px;
+			margin-top: 10px;
+			font-family: 'MavenProBold';
+		}
+	}
+	&__column-right {
+		  float: left;
+		    width: 220px;
+	}
+	&__header {
+		text-transform: uppercase;
+		color:$secondaryFont;
+		font-family: 'MavenProBold';
+			  font-size: 13px;
+		  margin-bottom: 10px;
+	}
+	&__movie {
+		  margin-bottom: 10px;
+		  &__date {
+			color:$secondaryFont;
+			  font-size: 13px;
+			  margin-bottom:5px;
+		  }
+		  &__vote {
+		  	  margin-left: 15px;
+		  	  color: $primaryFont;
+		  	  font-family: 'MavenProBold';
+		  }
+		  &__name {
+			  text-decoration: none;
+			  color: $primaryFont;
+			  display: block;
+			  margin-bottom: 5px;
+			  font-family: 'MavenProBold';
+		  }
+		  &__progressbar {
+		  		width:150px;
+		  		background-color: $lightestGray;
+		  		border-radius: 5px;
+		  		height:10px;
+		  		overflow: hidden;
+		  		float:left;
+		  		div {
+					  background: $royalBlue;
+					  height: 100%;
+		  		}
+		  }
+	}
+}
 

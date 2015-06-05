@@ -169,20 +169,27 @@
 					<hr>
 					<div class="clearfix"></div>
 		</div> 
-		<div>
-			<a href="/#/movie/{{Upcoming[0].id}}">
-				<img ng-src="{{Upcoming[0].poster}}" alt="">
-			</a>
-			<h3>{{Upcoming[0].title}}</h3>
-		</div>
-		<div>
-			<div ng-repeat="movie in Upcoming | filter: upcomingFilter">
-				<a href="/#/movie/{{movie.id}}">{{movie.title}}</a>
-				<span>{{movie.fullDate}}</span>
-				<span>{{movie.vote_average}}</span>
+		<div class="upcoming">
+			<div class="upcoming__column-left">
+				<a href="/#/movie/{{Upcoming[0].id}}">
+					<img ng-src="{{Upcoming[0].poster}}" alt="">
+				</a>
+				<h3>{{Upcoming[0].title}}</h3>
 			</div>
-		</div>
-			
+			<div class="upcoming__column-right">
+				<div class="upcoming__header">comming soon</div>
+				<div class="upcoming__movies">
+					<div ng-repeat="movie in Upcoming | filter: upcomingFilter" class="upcoming__movie">
+						<a class="upcoming__movie__name" href="/#/movie/{{movie.id}}">{{movie.title}}</a>
+						<div class="upcoming__movie__date">{{movie.fullDate}}</div>
+						<div class="upcoming__movie__progressbar">
+							<div style="width:{{movie.vote_average*10}}%"></div>
+						</div>
+						<span class="upcoming__movie__vote">{{movie.vote_average}}</span>
+					</div>
+				</div>
+			</div>
+		</div>	
 	</div> 	
 	<div class="home__topRated" ng-hide='hideTopRated'>
 		<div class="blockName">
