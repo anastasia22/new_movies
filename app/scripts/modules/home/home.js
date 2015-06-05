@@ -91,7 +91,7 @@ angular.module('springMovies.home', [])
 			newsDatabase.getNews().success(function(data){
 				var news = data.response.docs.filter(function(el){
 					return !!el.multimedia.length;
-				}).slice(0,4);
+				}).slice(0,3);
 				news[0].primary = true;
 				$scope.news =  homeFactory.modifyNews(news);
 			}).error(function(){

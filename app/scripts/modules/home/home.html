@@ -189,7 +189,24 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
+		<div class="clearfix"></div>
+		<div class="blockName">
+			<p>news feed</p>
+			<hr>
+			<div class="clearfix"></div>
+		</div> 
+		<div class="news" ng-hide='hideNews'>
+			<div ng-repeat='block in news | filter: newsFilter' class="news__block">
+				<div class="news__img-cont">
+					<img ng-src="http://static01.nyt.com/{{block.multimedia[0].url}}" alt="">
+				</div>
+				<div class="news__data-cont">
+					<div ng-bind-html = 'block.lead_paragraph | html' class="news__info"></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div> 	
 	</div> 	
 	<div class="home__topRated" ng-hide='hideTopRated'>
 		<div class="blockName">
@@ -197,40 +214,29 @@
 					<hr>
 					<div class="clearfix"></div>
 		</div> 
-		<table>
-			<tr ng-repeat='movie in TopRated'>
-				<td>{{ $index +1 }}</td>
-				<td><img ng-src="{{movie.poster}}" alt=""></td>
-				<td>
-					{{movie.title}}
-					<span ng-repeat='genre in movie.genres'>
-						{{genre.name}}
-					</span>
-				</td>
-				<td>
-					rate: {{movie.vote_average}}
-				</td>
-				<td>watch</td>
-			</tr>
-		</table>
-			
+		<div class="topRated">
+				<div ng-repeat='movie in TopRated' class="topRated__movie">
+					<div class="topRated__index">{{ $index +1 }}</div>
+					<div class="topRated__poster">
+						<img ng-src="{{movie.poster}}" alt="">
+					</div>
+					<div class="topRated__info">
+						<div class="topRated__title">{{movie.title}}</div>
+						<div class="topRated__genres">
+							<span ng-class="{genres: movie.genres.length>1}" ng-repeat='genre in movie.genres'> {{genre.name}}</span>
+						</div>
+					</div>
+					<div class="topRated__vote">
+						<span> rate:</span> {{movie.vote_average}}
+					</div>
+					<div class="topRated__watch">
+						<img src="images/watch.svg" alt="">
+					</div>
+				</div>
+		</div>	
 	</div>
 	
-	<div class="news" ng-hide='hideNews'>
-		 
-		<div>
-			<img ng-src="http://static01.nyt.com/{{news[0].multimedia[0].url}}" alt="">
-			<span>{{news[0].date}}</span>
-			<a href="{{news[0].web_url}}" ng-bind-html = 'news[0].headline.main | html'></a>
-			<div ng-bind-html = 'news[0].lead_paragraph | html'></div>
-		</div>
-		<div ng-repeat='block in news | filter: newsFilter'>
-			<img ng-src="http://static01.nyt.com/{{block.multimedia[0].url}}" alt="">
-			<a href="{{block.web_url}}" ng-bind-html = 'block.headline.main | html'></a>
-			<span>{{block.date}}</span>
-		</div>
-		
-	</div> 
+	
 			
 
 	<div 

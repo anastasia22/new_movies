@@ -119,7 +119,7 @@ angular.module('springMovies.home').service('homeFactory', ['movieDatabase', 'im
 				});
 			},
 			modifyTopRated: function(data) {
-				var movies = data.results.slice(0, 6);
+				var movies = data.results.slice(0, 7);
 				return  movies.map(function(movie) {
 					movie.poster = imageLinksService.smallImgLink(movie.poster_path);
 					movieDatabase.getFullMovieInfo(movie.id).success(function(data){
