@@ -1,53 +1,88 @@
 <div class='home'>
+</div>
+	<div class="home__banner" ng-hide="hideNowPlaying">
+			<div class="home__banner-cont">
+				<div class="nav__arrows nav__arrows--prev" ng-click="slideNowplay('prev')"	ng-show="showPrevArrow">
+						<img class="nav-arr nav-arr--prev" src="images/arr.svg" alt="">
+				</div>
+				<div class='nowplay' ng-repeat = "(i,movie) in NowPlaying">
+						<div class='nowplay-item'  ng-show="currSlide == i">
+								<div class="nowplay__img-cont">
+									<img ng-src={{movie.poster}}/>
+								</div>
+								<div class='nowplay__data-cont'>
+											<div>{{movie.year}}</div>
+											<div class="nowplay__name"><a class="nowplay__name__link" href='/#/movie/{{movie.id}}'>{{movie.title}}</a></div>
+								<div class="nowplay__additional">
+									<div class='nowplay__date'>{{movie.fullDate}}</div>
+									<div class="nowplay__votes">
+										<span class="nowplay__votes-cont">
+											<img class="star"
 
-	<div class="home__banner" ng-hide='hideNowPlaying'>
-		<div class='nowPlaying' ng-repeat = "movie in NowPlaying">
-				<div class='nowPlaying__main-cont' ng-show="movie.isShown">
-					<div class='nowPlaying__img-cont'>
-						<img ng-src={{movie.poster}}/>
+												ng-attr-src="{{movie.vote <= 2 ? 'images/starhalf.svg' : 'images/star.svg'}}"
+												alt="">
+											<img class="star"
+
+												ng-attr-src="{{movie.vote<=4 ? (movie.vote<=2 ? 'images/unstar.svg' : 'images/starhalf.svg') : 'images/star.svg'}}"
+												alt=""/>
+											<img class="star"
+
+												ng-attr-src="{{movie.vote<=6 ? (movie.vote<=4 ? 'images/unstar.svg' : 'images/starhalf.svg') : 'images/star.svg'}}"
+												alt=""/>
+											<img class="star"
+
+												ng-attr-src="{{movie.vote<=8 ? (movie.vote<=6 ? 'images/unstar.svg' : 'images/starhalf.svg') : 'images/star.svg'}}"
+												alt=""/>
+											<img class="star"
+
+												ng-attr-src="{{movie.vote<=10 ? (movie.vote<=8 ? 'images/unstar.svg' : 'images/starhalf.svg') : 'images/star.svg'}}"
+												alt=""/>
+										</span>
+										<span class="nowplay__votes-rat">{{movie.vote}}/10</span>
+									</div>
+									<div class='nowplay__runtime'>{{movie.runtime}} min</div>
+									<div class="nowplay__genres">
+										<a class="nowplay__genre" ng-repeat = "genre in movie.genres" href=""><span class="nowplay__gen">{{genre.name}}</span></a>
+									</div>
+									<div class="nowplay__watchtrailer">
+										<div class="nowplay__watchtrailer__button"></div>
+										<div class="nowplay__watchtrailer__title"
+												href="/#/home/trailer/{{movie.trailer}}"
+												ng-click="showTrailer(movie.trailer)"
+											>
+											Watch Trailer</div>
+									</div>
+								</div>
+								</div>
+						</div>
+
+				</div>
+				<div class="nav__arrows nav__arrows--next" ng-click="slideNowplay('next')"	ng-show="showNextArrow">
+						<img class="nav-arr nav-arr--next" src="images/arr.svg" alt="">
+						<img class="nav-arr nav-arr--next" src="images/arr.svg" alt="">
+				</div>
+
+				<div class="nav__dots">
+					<div
+						class="nav__dot"
+						ng-repeat="movie in nowplay"
+						ng-class="{nav__dot--active: $index==currSlide}"
+						ng-click="slide($index)">
 					</div>
 				</div>
-				<div class='nowPlaying__data-cont' ng-show="movie.isShown">
-							<a href='/#/movie/{{movie.id}}'>{{movie.title}}</a>
-							<p>{{movie.year}}</p>
-							<p>{{movie.fullDate}}</p>
-							<p>{{movie.vote}}/10</p>
-							<p>{{movie.runtime}} min</p>
-							<div>
-								<span ng-repeat = "genre in movie.genres" href="">{{genre.name}}</span>
-							</div>
-							<a href="/#/home/trailer/{{movie.trailer}}" ng-click="showTrailer(movie.trailer)">Watch Trailer</a>
-				</div>
-		</div>
-		<div 
-			class="nav__arrows nav__arrows--next" 
-			ng-click="slide('next')"
-			ng-show="showNextArrow"
-		></div>
-		<div 
-			class="nav__arrows nav__arrows--prev" 
-			ng-click="slide('prev')"
-			ng-show="showPrevArrow"
-		></div>
-		<div class="nav__dots">
-			<div 
-				class="nav__dot" 
-				ng-repeat="movie in NowPlaying"
-				ng-class="{nav__dotActive: $index==currSlide}"
-				ng-click="slide($index)">					
 			</div>
 		</div>
-	</div>
 
+<div class="home__block">
 	<div class="home__discover" ng-hide='hideDiscovers'>
 		<div class="discover">
 			<div class="column-left">
-				<div class="blockName">
+				<div class="block-name">
 					<p>discover</p>
 					<hr>
 					<div class="clearfix"></div>
 				</div>
-				<div class="discover__typeControls">	
+				<div class="discover__typeControls">
 					<label class="control-label">
 						<input type="radio" value="popular" name="type" ng-model="discoverType" ng-change="checkDiscover()">
 						<span class="control-wrapper">
@@ -70,7 +105,7 @@
 						</span>
 					</label>
 					<label class="control-label">
-						<input type="radio" value="tvshows" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">	
+						<input type="radio" value="tvshows" name="kind" ng-model="discoverKind" ng-change="checkDiscover()">
 						<span class="control-wrapper">
 							<img src="images/monitor.svg" alt="">
 							TV Shows
@@ -89,11 +124,11 @@
 						<span class="control-wrapper">Fantasy</span>
 					</label>
 					<label class="control-label">
-						<input type="radio" value="horror" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+						<input type="radio" value="horror" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
 						<span class="control-wrapper">Horror</span>
 					</label>
 					<label class="control-label">
-						<input type="radio" value="comedy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+						<input type="radio" value="comedy" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
 						<span class="control-wrapper">Comedy</span>
 					</label>
 					<label class="control-label">
@@ -105,7 +140,7 @@
 						<span class="control-wrapper">Adventure</span>
 					</label>
 					<label class="control-label">
-						<input type="radio" value="documentary" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">	
+						<input type="radio" value="documentary" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
 						<span class="control-wrapper">Documentary</span>
 					</label>
 					<label class="control-label">
@@ -113,14 +148,14 @@
 						<span class="control-wrapper">Drama</span>
 					</label>
 					<label class="control-label">
-						<input type="radio" value="for-kids" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">				
+						<input type="radio" value="for-kids" name="genre" ng-model="discoverGenre" ng-change="checkDiscover()">
 						<span class="control-wrapper">For Kids</span>
 					</label>
 				</div>
 				<div class="discover__results">
-					<div class="discover__main-cont">
+					<div class="discover__main-cont" id="bla">
 						<div class="discover__result" ng-repeat='movie in discovers'>
-							<div class="discover__img-cont">	
+							<div class="discover__img-cont">
 								<img ng-src="{{movie.poster}}" alt="">
 							</div>
 							<div class="discover__data-cont">
@@ -129,46 +164,46 @@
 							</div>
 						</div>
 					</div>
-					<div 
-						class="nav__arrows nav__arrows--next" 
+					<div
+						class="nav__arrows nav__arrows--next"
 					></div>
-					<div 
-						class="nav__arrows nav__arrows--prev" 
+					<div
+						class="nav__arrows nav__arrows--prev"
 					></div>
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
 
 	<div class="home__celebrities" ng-hide='hideCelebrities'>
-		<div class="blockName">
+		<div class="block=name">
 					<p>celebrities</p>
 					<hr>
 					<div class="clearfix"></div>
-		</div> 
-		<div class="celebrities">	
+		</div>
+		<div class="celebrities">
 			<div ng-repeat='person in celebrities' class="celebrities__person">
-				<div class="celebrities__img-cont">	
+				<div class="celebrities__img-cont">
 					<a href='/#/actor/{{person.id}}'>
 						<img ng-src="{{person.profile}}" alt="">
 					</a>
 				</div>
-				<div class="celebrities__data-cont">	
+				<div class="celebrities__data-cont">
 					<h1 class="celebrities__name">
 						<a href='/#/actor/{{person.id}}'>{{person.name}}</a>
 					</h1>
 					<a class="celebrities__movie" href='/#/movie/{{person.movie.id}}'>{{person.movie.title}}</a>
 				</div>
-			</div> 
+			</div>
 		</div>
 	</div>
 
 	<div class="home__upcoming" ng-hide='hideUpcoming'>
-		<div class="blockName">
+		<div class="block-name">
 					<p>upcoming</p>
 					<hr>
 					<div class="clearfix"></div>
-		</div> 
+		</div>
 		<div class="upcoming">
 			<div class="upcoming__column-left">
 				<a href="/#/movie/{{Upcoming[0].id}}">
@@ -190,66 +225,35 @@
 				</div>
 			</div>
 		</div>
-		<div class="clearfix"></div>
-		<div class="blockName">
-			<p>news feed</p>
-			<hr>
-			<div class="clearfix"></div>
-		</div> 
-		<div class="news" ng-hide='hideNews'>
-			<div ng-repeat='block in news | filter: newsFilter' class="news__block">
-				<div class="news__img-cont">
-					<img ng-src="http://static01.nyt.com/{{block.multimedia[0].url}}" alt="">
-				</div>
-				<div class="news__data-cont">
-					<div ng-bind-html = 'block.lead_paragraph | html' class="news__info"></div>
-				</div>
+	</div>
+	<div class="clearfix"></div>
+	<div ng-hide='hideNews'>
+		<div class="block-name">
+				<p>news feed</p><hr>
 				<div class="clearfix"></div>
-			</div>
-		</div> 	
-	</div> 	
+		</div>
+		<articleul arr="news" isexplicit="false"  filter="newsFilter" />
+	</div>
 	<div class="home__topRated" ng-hide='hideTopRated'>
-		<div class="blockName">
-					<p>top rated</p>
-					<hr>
-					<div class="clearfix"></div>
-		</div> 
-		<div class="topRated">
-				<div ng-repeat='movie in TopRated' class="topRated__movie">
-					<div class="topRated__index">{{ $index +1 }}</div>
-					<div class="topRated__poster">
-						<img ng-src="{{movie.poster}}" alt="">
-					</div>
-					<div class="topRated__info">
-						<div class="topRated__title">{{movie.title}}</div>
-						<div class="topRated__genres">
-							<span ng-class="{genres: movie.genres.length>1}" ng-repeat='genre in movie.genres'> {{genre.name}}</span>
-						</div>
-					</div>
-					<div class="topRated__vote">
-						<span> rate:</span> {{movie.vote_average}}
-					</div>
-					<div class="topRated__watch">
-						<img src="images/watch.svg" alt="">
-					</div>
-				</div>
-		</div>	
+		<div class="block-name">
+				<p>top rated</p><hr>
+				<div class="clearfix"></div>
+		</div>
+		<list arr="TopRated"/>
 	</div>
-	
-	
-			
-
-	<div 
-	class="modal"
-	ng-show="subview"
-	ng-click="closeModal()">
-
-	<div class="modal__container">
-		
-		<iframe wmode="Opaque" height="360" src="{{params}}"></iframe>
-		
-	</div>
-
-
 </div>
+
+	<div
+		class="modal"
+		ng-show="subview"
+		ng-click="closeModal()">
+
+		<div class="modal__container">
+
+			<iframe wmode="Opaque" height="360" src="{{params}}"></iframe>
+
+		</div>
+
+
+	</div>
 </div>

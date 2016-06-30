@@ -55,7 +55,7 @@ grunt.initConfig({
 			}
 		},
 		images: {
-			files: ['app/images/*'],
+			files: ['app/images/**'],
 			tasks: ['copy:img'],
 			options: {
 				livereload: {
@@ -73,7 +73,7 @@ grunt.initConfig({
 				script: 'server.js'
 			}
 		}
-	}, 
+	},
 	sass: {
 		dev: {
 			options: {
@@ -103,12 +103,12 @@ grunt.initConfig({
 			dest: 'dist/style.css'
 		}
 
-	}, 
-	
+	},
+
 	concat: {
 	    options: {
 	    	separator: ';\n'
-	    },	
+	    },
     	prod: {
       		src: ['app/scripts/controllers/**', 'app/scripts/directives/**', 'app/scripts/modules/**', 'app/scripts/services/**', 'app/scripts/app.js'],
   			dest: 'dist/built.js'
@@ -138,5 +138,3 @@ grunt.registerTask('prod', ['clean', 'mkdir', 'sass:prod', 'autoprefixer', 'conc
 
 
 grunt.registerTask('default', ['dev', 'express', 'watch']);
-
-

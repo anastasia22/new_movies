@@ -1,12 +1,10 @@
 'use strict';
 
 
-angular.module('springMovies', [
+angular.module('springmov', [
 	'ngRoute',
-  'springMovies.home',
-  'springMovies.movie',
-  'springMovies.movies',
-  'springMovies.news'
-  
+  'springmov.home',
+  'springmov.movie',
+  'springmov.movies',
+  'springmov.news'
 ])
-

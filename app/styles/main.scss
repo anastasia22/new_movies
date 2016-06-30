@@ -5,10 +5,12 @@
 @import "partials/_menu";
 @import "partials/_search";
 @import "partials/_home";
+@import "partials/_list";
+@import "partials/_article";
+
 
 * {
 	box-sizing:border-box;
-
 }
 
 @font-face {
@@ -23,23 +25,27 @@
 body {
 	background: linear-gradient(90deg, $aqua 10%, $royalBlue 90%);
 	font-family: 'MavenPro';
-	color: $primaryFont;
-	font-size:14px;
+	color: $primaryColor;
+	font-size:$mainfs;
+	@include bp(medium) {
+		font-size:$smallfs;
+	}
 }
 
 .main-container {
-  background-color: white;
+  background-color: $white;
   max-width: $contWidth;
   margin: 0 auto;
+	box-shadow: 0 0 10px;
 }
 
-.blockName {
+.block-name {
 	text-transform: uppercase;
 	font-family: 'MavenProBold';
 	color: $mainBlue;
-	font-size: 13px;
+	font-size: $betafs;
 	width: 100%;
-	padding-top: 8px;
+	padding-top: 10px;
 	margin-bottom: 20px;
 	p {
 		float: left;
@@ -47,7 +53,7 @@ body {
 	}
 	hr {
 		border: 0;
-		border-bottom: 1px solid $secondaryFont;
+		border-bottom: 1px solid $betaColor;
 	}
 }
 
@@ -58,77 +64,73 @@ body {
 }
 
 .control-label {
-	
 	font-family: 'MavenProBold';
 	input {
 		display:none;
 	}
 	input:checked+span {
-		background-color: $mainBlue;
-		color:white;
-		border-color:$mainBlue;
+		@include mainControl();
 	}
 }
 .control-wrapper {
 	display:block;
 	height: 100%;
-	border-radius: 20px;
+	border-radius: $ovalBorderRad;
 	&:hover {
 		background-color: $mainGray;
+		cursor: pointer;
 	}
 }
 
 
 .nav__arrows {
-	width:20px;
-	height:20px;
+	width: 10%;
+	height: 100%;
 	z-index: 10;
-	position:absolute;
+	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	margin: auto;
 	cursor:pointer;
-	&:after {
-			content: '';
-			position: absolute;
-			top: 100%;
-			right: 85%;
-			height: 100%;
-			width: 10%;
-			background: $mainGray;
-	}
-	&:before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 10%;
-			background: $mainGray;
-			transform: skew(45deg, 0deg);
+	@include bp(medium) {
+		width: 7%;
 	}
 	&--next {
 		left: 90%;
-		&:after {
-			transform: skew(-45deg, 0deg);
-		}
-		&:before {
-			transform: skew(45deg, 0deg);
+		@include bp(medium) {
+			left: 93%;
 		}
 	}
 	&--prev {
 		right: 90%;
-		&:after {
-			transform: skew(-135deg, 0deg);
+		@include bp(medium) {
+			right: 93%;
 		}
-		&:before {
-			transform: skew(135deg, 0deg);
+	}
+	&:hover .nav-arr{
+		width: 60px;
+		@include bp(medium) {
+			width: 50px;
 		}
 	}
 }
-
+.nav-arr {
+	  &--prev {
+			transform: rotate(180deg);
+		};
+		width: 50px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+		@include bp(medium) {
+			width: 40px;
+		}
+}
 .nav {
 	&__dots {
 		position:absolute;
@@ -145,11 +147,27 @@ body {
 			margin: 5px;
 			display: inline-block;
 			border-radius: 50%;
-			border: 2px solid white;
+			border: 2px solid $white;
+			box-shadow: 0 0 10px;
 			cursor: pointer;
-			&.nav__dotActive {
+			&.nav__dot--active {
 				border-color: $mainBlue;
+				box-shadow: 0 0 10px $mainBlue;
 			}
 		}
 	}
+}
+
+.star{
+	display: inline-block;
+	width: 14px;
+	&__half .star-svg{
+		fill: $lightestGray;
+	}
+	&__empty .star-svg{
+		fill:red;
+	}
+}
+.star path{
+	fill: white !important;
 }

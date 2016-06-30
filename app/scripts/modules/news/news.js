@@ -1,21 +1,19 @@
 'use strict';
 
-angular.module('springMovies.news', [])
+angular.module('springmov.news', [])
 
 	.config(function($routeProvider) {
 	  $routeProvider
 		.when('/news', {
-		    templateUrl: 'news.html',
+		    templateUrl: 'scripts/modules/news/news.html',
 		    controller: 'newsController'
 		})
-	    
 	 })
-
-	.controller('newsController', ['$scope', 'newsFactory',
-		function($scope, newsFactory) {
-			newsFactory.getNews()
+	.controller('newsController', ['$scope', 'newsDatabase',
+		function($scope, newsDatabase) {
+			newsDatabase.getNews()
 			.success(function(data){
-				console.log(data)
+				console.log(data);
 			}).error(function(){
 				//code for not found movie
 			})

@@ -10,8 +10,16 @@
       @media (max-width: 320px)  { @content; }
   }
     @else if $point == large {
-      @media (min-width: 769px)  { @content; }
+      @media (max-width: 1024px)  { @content; }
+  }
+    @else if $point == very-large {
+    @media (min-width: 1025px)  { @content; }
   }
 }
 
-
+@mixin mainControl() {
+  background-color: $mainBlue;
+  color:$white;
+  border-color:$mainBlue;
+  cursor: default;
+}

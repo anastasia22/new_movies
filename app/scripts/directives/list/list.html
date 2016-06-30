@@ -1,0 +1,24 @@
+<div class="movlist">
+  <div ng-repeat='item in arr' class="movlist__movie">
+    <div class="movlist__index mov-tr">{{ $index +1 }}</div>
+    <div class="movlist__poster mov-tr">
+      <img ng-src="{{item.poster}}" alt="{{item.title}} poster">
+    </div>
+      <div class="movlist__info mov-tr">
+        <div class="movlist__title">{{item.title}}</div>
+        <div class="movlist__genres">
+          <span
+            ng-class="{genres: item.genres.length>1}"
+            ng-repeat='genre in item.genres'>
+              {{genre.name}}
+          </span>
+        </div>
+      </div>
+      <div class="movlist__vote mov-tr">
+        <span> rate:</span> {{item.vote_average}}
+      </div>
+      <div class="movlist__watch mov-tr">
+        <img src="images/watch.svg" alt="watch movie {{item.title}}">
+      </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('springMovies').directive('headerInfo', function() {
+angular.module('springmov').directive('headerInfo', function() {
 	return {
 		restrict: 'E',
 		templateUrl: 'scripts/directives/header/header.html',
@@ -9,6 +9,6 @@ angular.module('springMovies').directive('headerInfo', function() {
 })
 
 function ModalCtrl($scope, $rootScope, $sce) {
-	
+
 };
 ModalCtrl.$inject = ['$scope', '$rootScope', '$sce'];

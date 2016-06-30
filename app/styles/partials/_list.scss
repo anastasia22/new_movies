@@ -1,0 +1,68 @@
+.movlist {
+	font-size:13px;
+	&__movie {
+		padding:5px;
+		.mov-tr {
+		display:inline-block;
+		vertical-align: middle;
+		}
+		&:nth-child(odd) {
+			background-color: $lightestGray;
+		}
+	}
+	&__index {
+		color: $betaColor;
+		  width: 10px;
+		  text-align: center;
+		  margin: 0 5px;
+	}
+	&__poster {
+		width:50px;
+		img {
+			width:100%
+		}
+	}
+	&__info {
+		  width: 220px;
+  margin: 0 10px;
+
+	}
+	&__title {
+		color: $mainBlue;
+		margin-bottom:5px;
+		font-size: 14px;
+		font-family: 'MavenProBold';
+	}
+	&__genres {
+		font-size: 13px;
+		color: $betaColor;
+		.genres:after  {
+
+				content: ',';
+				display: inline-block;
+
+		}
+		.genres:last-child:after {
+			content: '';
+		}
+	}
+	&__vote {
+		color:$mainBlue;
+		font-size: 14px;
+		font-family: 'MavenProBold';
+		span {
+			color:$betaColor;
+			font-size: 13px;
+			font-family: 'MavenPro';
+		}
+	}
+	&__watch {
+		margin-left:30px;
+		img {
+			width:15px;
+			&:hover {
+				cursor:pointer;
+			}
+		}
+	}
+}

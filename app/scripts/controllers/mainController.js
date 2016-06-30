@@ -1,6 +1,5 @@
 'use strict';
 
-angular.module('springMovies').controller('mainController', [function() {
-	
-}]);
+angular.module('springmov').controller('mainController', [function() {
 
+}]);

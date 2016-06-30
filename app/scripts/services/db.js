@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('springMovies').factory('movieDatabase', ['$http', function($http) {
+angular.module('springmov').factory('movieDatabase', ['$http', function($http) {
 	var _baseUrl = "https://api.themoviedb.org/3/";
 	var _apiKey = 'api_key=7a135ff2c408f8e138e4645f83b30222';
 
@@ -41,7 +41,7 @@ angular.module('springMovies').factory('movieDatabase', ['$http', function($http
 	            break;
 	            default:
 					url +=null
-	        };	
+	        };
 
 			switch (genre) {
 	            case 'adventure':
@@ -55,10 +55,10 @@ angular.module('springMovies').factory('movieDatabase', ['$http', function($http
 	            break;
 	            case 'drama':
 	                url +='with_genres=18';
-	            break;  
+	            break;
 	            case 'fantasy':
 	                url +='with_genres=14';
-	            break;    
+	            break;
 	            case 'for-kids':
 	                url +='with_genres=16,10751';
 	            break;
@@ -67,7 +67,7 @@ angular.module('springMovies').factory('movieDatabase', ['$http', function($http
 	            break;
 	            case 'romance':
 	                url +='with_genres=10749';
-	            break;  
+	            break;
 	            case 'thriller':
 	                url +='with_genres=53';
 	            break;
@@ -91,14 +91,12 @@ angular.module('springMovies').factory('movieDatabase', ['$http', function($http
 	};
 }]);
 
-angular.module('springMovies').factory('newsDatabase', ['$http', function($http) {
+angular.module('springmov').factory('newsDatabase', ['$http', function($http) {
 	var _baseUrl = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=section_name:("Movies") AND type_of_material:("News")&sort=newest&api-key=c3b06d2b0936ccb5547a877c765a49a5:1:70730185&page=1'
 
 	return {
 		getNews : function() {
 			return $http.get(_baseUrl);
 		}
-
 	};
 }]);
-

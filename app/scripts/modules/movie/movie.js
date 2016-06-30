@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('springMovies.movie', [])
+angular.module('springmov.movie', [])
 
 	.config(function($routeProvider) {
 	  $routeProvider
@@ -8,10 +8,10 @@ angular.module('springMovies.movie', [])
 		    templateUrl: 'scripts/modules/movie/movie.html',
 		    controller: 'movieController'
 		})
-	    
+
 	 })
 
-	.controller('movieController', ['movieDatabase', 'imageLinksService', '$routeParams', '$scope', 
+	.controller('movieController', ['db', 'imageLinksService', '$routeParams', '$scope',
 		function(movieDatabase, imageLinksService, $routeParams, $scope) {
 			movieDatabase.getMovieInfo($routeParams.id)
 			.success(function(data){

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('springMovies.home', [])
+angular.module('springmov.home', [])
 
 	.config(function($routeProvider) {
 	  $routeProvider
@@ -18,14 +18,16 @@ angular.module('springMovies.home', [])
 	        return $sce.trustAsHtml(input);
 	    }
 	})
+	.controller('homeController', ['movieDatabase', 'newsDatabase', 'homeFactory',
+		'slidebanner', '$routeParams', '$scope', '$sce',
+		function(movieDatabase, newsDatabase, homeFactory, slidebanner, $routeParams,
+			$scope, $sce, list) {
 
-	.controller('homeController', ['movieDatabase', 'newsDatabase', 'homeFactory', 'homeSlider', '$routeParams', '$scope', '$sce',
-		function(movieDatabase, newsDatabase, homeFactory, homeSlider, $routeParams, $scope, $sce) {
-			
 			var homePageMovies = ['Upcoming', 'TopRated', 'NowPlaying'];
 			$scope.discoverType= 'popular';
 			$scope.discoverKind= 'movies';
 			$scope.discoverGenre= 'fantasy';
+			$scope.q = {NowPlaying: 5, Upcoming: 4, TopRated: 7};
 			$scope.subview = false;
 			$scope.currSlide = 0;
 			$scope.showNextArrow = true;
@@ -34,23 +36,21 @@ angular.module('springMovies.home', [])
 			$scope.upcomingFilter = function(el) {
 				return !el.poster;
 			};
-			$scope.newsFilter = function(el) {
-				return !el.primary;
-			};
 
-			$scope.slide = function(param) {
+			//change nowplay movie in container
+			$scope.slideNowplay = function(param) {
 				if (param === 'next') {
 					param = $scope.currSlide + 1;
 				} else if (param === 'prev') {
 					param = $scope.currSlide - 1;
 				};
-				var output = homeSlider.slide($scope.NowPlaying, $scope.currSlide, param);
+				var output = slidebanner.slide($scope.NowPlaying, $scope.currSlide, param);
 				$scope.currSlide = output.curr;
 				$scope.showNextArrow = output.next;
 				$scope.showPrevArrow = output.prev;
 				$scope.NowPlaying = output.data;
 			};
-			
+
 			$scope.showTrailer = function(url){
 				$scope.subview = !$scope.subview;
 			};
@@ -62,20 +62,22 @@ angular.module('springMovies.home', [])
 				$scope.params = ''
 			}
 
+			//change data in discover block
 			$scope.checkDiscover = function() {
 				movieDatabase.discoverMovies($scope.discoverKind, $scope.discoverGenre, $scope.discoverType).success(function(data) {
-					$scope.discovers = homeFactory.modifyDiscovers(data.results);
+					$scope.discovers = homeFactory.modifyDiscovers(data.results,$scope.q.Discovers);
+					initGallery();
 				}).error(function(){
 					$scope.hideDiscovers = true;
 				});
 			};
 			$scope.checkDiscover();
 
-			// receiving home page movies
+			// receiving home page movies info
 			homePageMovies.map(function(movieType){
 				movieDatabase.getHomeMovies(movieType)
 					.success(function(data){
-						$scope[movieType] = homeFactory['modify' + movieType](data);
+						$scope[movieType] = homeFactory['modify' + movieType](data, $scope.q[movieType]);
 					})
 					.error(function(){
 						$scope['hide' + movieType] = true;
@@ -92,12 +94,48 @@ angular.module('springMovies.home', [])
 				var news = data.response.docs.filter(function(el){
 					return !!el.multimedia.length;
 				}).slice(0,3);
-				news[0].primary = true;
 				$scope.news =  homeFactory.modifyNews(news);
+				console.log($scope.news);
 			}).error(function(){
 				$scope.hideNews = true;
 			});
 
+			//drag carousel
+			function initGallery() {
+				var isDrag,
+						el = $('#bla'),
+						leftFlag,
+						left,
+						initPos= {},
+						diffPos= {};
+						el.width = $scope.discovers.length * $($('.discover__result')[0]).outerWidth(true);
+				function onMouseDown(ev) {
+					ev.preventDefault();
+					isDrag = true;
+					initPos.x = ev.clientX;
+					leftFlag = parseInt(el.css('left'));
+					console.log('mousedown started', event);
+				}
+				function onMouseMove(ev) {
+					ev.preventDefault();
+					console.log(isDrag);
+					if (isDrag) {
+						left = leftFlag + ev.clientX - initPos.x;
+						if (left > 0) {left = 0};
+						// if (l >)
 
-			
+						el.css('left', left);
+
+					}
+				}
+				function onMouseUp(ev) {
+					isDrag = false;
+					leftFlag = false;
+					console.log('mouseup started', event);
+				}
+				el.on('mousedown', onMouseDown);
+				el.on('mousemove', onMouseMove);
+				$(document).on('mouseup', onMouseUp);
+			};
 	}]);
+;

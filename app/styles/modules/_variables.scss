@@ -5,13 +5,27 @@ $aqua: rgb(67, 206, 162);/*#43cea2*/
 $royalBlue: rgb(24, 90, 157);/*#185a9d*/
 $mainBlue: rgb(26, 130, 203);
 
-$primaryFont: rgb(82,95,101);
-$secondaryFont: rgb(185,185,185);
+$primaryColor: rgb(82,95,101);
+$betaColor: rgb(185,185,185);
 $lightestGray:	rgb(240,240,240);
 $mainGray: rgb(224,224,224);
 $lightGray:	rgb(215,215,215);
+$black: rgb(0,0,0);
+$white: rgb(255,255,255);
+$mainGreenStar: rgb(81,166,23); /*#51A617*/
+$disabledGreenStar: rgb(34,60,13); /*#223C0D*/
+
+/*fonts*/
+$mainfs: 14px;
+$betafs: 13px;
+$smallfs: 12px;
+$smallerfs: 10px;
+$headingfs: 23px;
+$subheadfs: 20px;
+
+
 
 
 /*functional*/
 $contWidth: 1200px;
-
+$ovalBorderRad: 20px;

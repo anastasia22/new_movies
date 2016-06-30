@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('springMovies').directive('footerInfo', function() {
+angular.module('springmov').directive('footerInfo', function() {
 	return {
 		restrict: 'E',
 		templateUrl: 'scripts/directives/footer/footer-info.html',
